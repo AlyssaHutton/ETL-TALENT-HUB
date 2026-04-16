@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETL Talent Development Call 2 — Candidate Prep Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #CC0000;
+    --red-dark: #900000;
+    --red-light: #fef0f0;
+    --red-mid: #f7d0d0;
+    --ink: #1a1a1a;
+    --ink-mid: #444;
+    --ink-light: #777;
+    --cream: #FDFAF6;
+    --rule: #e0d8d0;
+    --teal: #1A5276;
+    --teal-light: #EBF5FB;
+    --purple: #4A235A;
+    --purple-light: #F5EEF8;
+  }
+
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { box-shadow: none !important; }
+  }
+
+  html, body { background: #d0c8c0; font-family: 'DM Sans', sans-serif; color: var(--ink); }
+
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    margin: 0.3in auto;
+    background: var(--cream);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+  }
+
+  /* ── HEADER ─────────────────────────────────── */
+  .header {
+    background: var(--red-dark);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: stretch;
+  }
+  .header-left { padding: 0.3in 0.38in 0.26in; }
+  .header-eyebrow {
+    font-size: 8px; font-weight: 600; letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.55); text-transform: uppercase; margin-bottom: 0.05in;
+  }
+  .header-call-badge {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 0.08in;
+  }
+  .header-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px; line-height: 0.95; color: #fff; letter-spacing: 0.02em;
+  }
+  .header-title span { color: rgba(255,255,255,0.4); }
+  .header-sub {
+    margin-top: 0.1in; font-size: 10px; font-weight: 400;
+    color: rgba(255,255,255,0.75); line-height: 1.55;
+  }
+  .header-right {
+    background: var(--red);
+    width: 1.5in;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 0.2in; gap: 0.08in;
+  }
+  .bullseye { width: 0.6in; height: 0.6in; }
+  .header-tag {
+    font-size: 7px; font-weight: 700; letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.6); text-transform: uppercase;
+    text-align: center; line-height: 1.4;
+  }
+
+  /* ── PROGRESSION BAND ───────────────────────── */
+  .prog-band {
+    background: var(--ink);
+    padding: 0.1in 0.38in;
+    display: flex; align-items: center; gap: 0;
+  }
+  .prog-step {
+    display: flex; align-items: center; gap: 0.08in;
+  }
+  .prog-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 12px; flex-shrink: 0;
+  }
+  .prog-dot.done { background: #555; color: #aaa; }
+  .prog-dot.active { background: var(--red); color: #fff; }
+  .prog-dot.future { background: #333; color: #666; }
+  .prog-label { font-size: 8px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .prog-label.done { color: #666; }
+  .prog-label.active { color: #fff; }
+  .prog-label.future { color: #444; }
+  .prog-arrow { color: #444; font-size: 10px; padding: 0 0.1in; }
+
+  /* ── INTRO BAND ─────────────────────────────── */
+  .intro-band {
+    background: var(--red-light);
+    border-top: 3px solid var(--red);
+    border-bottom: 1px solid var(--red-mid);
+    padding: 0.12in 0.38in;
+    display: flex; align-items: flex-start; gap: 0.16in;
+  }
+  .intro-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .intro-text { font-size: 10px; color: var(--red-dark); line-height: 1.55; font-weight: 500; }
+  .intro-text strong { font-weight: 700; }
+
+  /* ── BODY GRID ──────────────────────────────── */
+  .body {
+    padding: 0.18in 0.38in 0.14in;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.16in;
+  }
+
+  /* ── ROOM CARD ──────────────────────────────── */
+  .room { background: #fff; border-radius: 6px; border: 1px solid var(--rule); overflow: hidden; display: flex; flex-direction: column; }
+  .room-header { padding: 0.11in 0.14in 0.09in; display: flex; flex-direction: column; gap: 0.04in; }
+  .room-1 .room-header { background: var(--red); }
+  .room-2 .room-header { background: var(--teal); }
+  .room-3 .room-header { background: var(--purple); }
+  .room-number { font-size: 7px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .room-title { font-family: 'Bebas Neue', sans-serif; font-size: 19px; color: #fff; letter-spacing: 0.04em; line-height: 1.05; }
+  .room-facil { font-size: 7px; color: rgba(255,255,255,0.6); font-style: italic; margin-top: 0.02in; }
+  .room-body { padding: 0.11in 0.13in; flex: 1; display: flex; flex-direction: column; gap: 0.09in; }
+
+  .topic {
+    background: var(--cream); border-radius: 3px;
+    border-left: 3px solid transparent; padding: 0.08in 0.09in;
+  }
+  .room-1 .topic { border-color: var(--red); }
+  .room-2 .topic { border-color: var(--teal); }
+  .room-3 .topic { border-color: var(--purple); }
+  .topic-label { font-size: 6.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.04in; }
+  .topic-name { font-size: 10.5px; font-weight: 700; color: var(--ink); margin-bottom: 0.04in; line-height: 1.2; }
+  .topic-desc { font-size: 8.5px; color: var(--ink-mid); line-height: 1.48; }
+  .topic-prompts { margin-top: 0.05in; display: flex; flex-direction: column; gap: 0.035in; }
+  .prompt { display: flex; gap: 0.055in; align-items: flex-start; }
+  .prompt-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+  .room-1 .prompt-dot { background: var(--red); }
+  .room-2 .prompt-dot { background: var(--teal); }
+  .room-3 .prompt-dot { background: var(--purple); }
+  .prompt-text { font-size: 8px; color: var(--ink-mid); line-height: 1.42; font-style: italic; }
+
+  /* ── SHIFT ROW ──────────────────────────────── */
+  .shift-row {
+    margin: 0 0.38in;
+    background: #fff; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden;
+  }
+  .shift-header {
+    background: var(--red); padding: 0.07in 0.16in;
+    display: flex; align-items: center; gap: 0.08in;
+  }
+  .shift-title { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: #fff; letter-spacing: 0.06em; }
+  .shift-sub { font-size: 7.5px; color: rgba(255,255,255,0.55); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
+  .shift-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .shift-item {
+    padding: 0.1in 0.14in; border-right: 1px solid var(--rule);
+    display: flex; gap: 0.1in; align-items: flex-start;
+  }
+  .shift-item:last-child { border-right: none; }
+  .shift-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .shift-content {}
+  .shift-item-title { font-size: 9px; font-weight: 700; color: var(--ink); margin-bottom: 0.03in; }
+  .shift-item-desc { font-size: 8px; color: var(--ink-mid); line-height: 1.42; }
+
+  /* ── PREP STRIP ─────────────────────────────── */
+  .prep-strip {
+    margin: 0.12in 0.38in 0;
+    background: #fff; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden;
+  }
+  .prep-header {
+    background: var(--ink); padding: 0.07in 0.16in;
+  }
+  .prep-title { font-family: 'Bebas Neue', sans-serif; font-size: 14px; color: #fff; letter-spacing: 0.06em; }
+  .prep-sub { font-size: 7px; color: rgba(255,255,255,0.45); letter-spacing: 0.1em; text-transform: uppercase; }
+  .prep-grid { display: grid; grid-template-columns: repeat(5, 1fr); }
+  .prep-item {
+    padding: 0.09in 0.1in; border-right: 1px solid var(--rule);
+    display: flex; flex-direction: column; gap: 0.03in;
+  }
+  .prep-item:last-child { border-right: none; }
+  .prep-num { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--red); line-height: 1; }
+  .prep-item-title { font-size: 8px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+  .prep-item-desc { font-size: 7.5px; color: var(--ink-light); line-height: 1.4; }
+
+  /* ── FOOTER ─────────────────────────────────── */
+  .footer {
+    background: var(--ink); padding: 0.09in 0.38in;
+    display: flex; align-items: center; justify-content: space-between; margin-top: 0.13in;
+  }
+  .footer-left { display: flex; align-items: center; gap: 0.14in; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #fff; letter-spacing: 0.04em; }
+  .footer-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.2); }
+  .footer-text { font-size: 7.5px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+  .footer-right { text-align: right; }
+  .footer-quote {
+    font-family: 'DM Serif Display', serif; font-size: 9px; font-style: italic;
+    color: rgba(255,255,255,0.45); line-height: 1.5; max-width: 2.7in;
+  }
+  .footer-quote strong {
+    color: rgba(255,255,255,0.65); font-style: normal;
+    font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 7px;
+    letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-top: 0.02in;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-eyebrow">Executive Team Leader → Store Director Pipeline</div>
+      <div class="header-call-badge">Call 2 of 3</div>
+      <div class="header-title">TALENT DEVELOPMENT<br><span>CALL 2</span> PREP GUIDE</div>
+      <div class="header-sub">
+        Call 2 is about showing growth — not just awareness. Come ready to share what has<br>
+        actually changed in how you lead since Call 1, with real examples and real evidence.
+      </div>
+    </div>
+    <div class="header-right">
+      <svg class="bullseye" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="38" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+        <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+        <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="2"/>
+        <circle cx="40" cy="40" r="10" fill="rgba(255,255,255,0.8)"/>
+        <circle cx="40" cy="40" r="5" fill="rgba(255,255,255,1)"/>
+      </svg>
+      <div class="header-tag">Group Talent<br>Development</div>
+    </div>
+  </div>
+
+  <!-- PROGRESSION BAND -->
+  <div class="prog-band">
+    <div class="prog-step">
+      <div class="prog-dot done">1</div>
+      <div class="prog-label done">Call 1 Complete</div>
+    </div>
+    <div class="prog-arrow">›</div>
+    <div class="prog-step">
+      <div class="prog-dot active">2</div>
+      <div class="prog-label active">Call 2 — You Are Here</div>
+    </div>
+    <div class="prog-arrow">›</div>
+    <div class="prog-step">
+      <div class="prog-dot future">3</div>
+      <div class="prog-label future">Call 3 — Final Assessment</div>
+    </div>
+  </div>
+
+  <!-- INTRO BAND -->
+  <div class="intro-band">
+    <div class="intro-icon">🔼</div>
+    <div class="intro-text">
+      <strong>Call 2 raises the bar:</strong> Facilitators are not just assessing what you know — they are assessing what you've done with it. Be ready to demonstrate that you have raised the standard for your team, begun distributing leadership beyond yourself, and built the rhythms and routines of a Store Director. <strong>Intent does not count. Behavior does.</strong>
+    </div>
+  </div>
+
+  <!-- THREE ROOMS -->
+  <div class="body">
+
+    <!-- ROOM 1 -->
+    <div class="room room-1">
+      <div class="room-header">
+        <div class="room-number">Breakout Room 01</div>
+        <div class="room-title">Personal<br>Leadership</div>
+        <div class="room-facil">Facilitated by Matt &amp; Sean</div>
+      </div>
+      <div class="room-body">
+
+        <div class="topic">
+          <div class="topic-label">Topic A</div>
+          <div class="topic-name">Be a Good Boss While Asking for More</div>
+          <div class="topic-desc">The best leaders care deeply about their people and hold a high standard simultaneously. Be ready to show how you hold both — not one at the expense of the other.</div>
+          <div class="topic-prompts">
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">How do you show genuine care for your team while consistently expecting more from them?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">Tell me about a difficult performance conversation — how did you hold both the standard and the relationship?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">What does a bad version of you look like as a boss — and how do you catch it?</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-label">Topic B</div>
+          <div class="topic-name">Distributing Competence</div>
+          <div class="topic-desc">SDs can't be the most capable person in every corner of the store. Know who you've made more capable in the last 90 days — and where capability is still stuck in you.</div>
+          <div class="topic-prompts">
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">Name a team member you've made meaningfully more capable. What did you do — and how do you know it worked?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">If pulled from your area for a week, what would struggle — and what does that tell you?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">Where are you still the go-to person for something your team should own?</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ROOM 2 -->
+    <div class="room room-2">
+      <div class="room-header">
+        <div class="room-number">Breakout Room 02</div>
+        <div class="room-title">Guest<br>Experience</div>
+        <div class="room-facil">Guest Experience Facilitators</div>
+      </div>
+      <div class="room-body">
+
+        <div class="topic">
+          <div class="topic-label">Topic A</div>
+          <div class="topic-name">Call to Action — GREET</div>
+          <div class="topic-desc">Target's in-store brand promise is delivered one greeting at a time. Know how your team greets, helps, engages, and thanks guests — especially when you're not watching.</div>
+          <div class="topic-prompts">
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">How do you build consistent greeting habits across your team — even when you're not on the floor?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">What's the difference between a genuine greeting and a scripted one — and how do you develop that in your team?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">Target has acknowledged inconsistent in-store experience. How are you making sure your team isn't part of that problem?</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-label">Topic B</div>
+          <div class="topic-name">Recognition vs. Accountability</div>
+          <div class="topic-desc">Recognition and accountability are not opposites — they are a system. Know your ratio, know your team, and be ready to show that you use both deliberately and with precision.</div>
+          <div class="topic-prompts">
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">How do you balance recognition and accountability in a typical week — what does that actually look like?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">How do you make recognition feel genuine and specific — not routine or hollow?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">How do you hold the standard without making accountability feel punitive?</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ROOM 3 -->
+    <div class="room room-3">
+      <div class="room-header">
+        <div class="room-number">Breakout Room 03</div>
+        <div class="room-title">Operations</div>
+        <div class="room-facil">Operations Facilitators</div>
+      </div>
+      <div class="room-body">
+
+        <div class="topic">
+          <div class="topic-label">Topic A</div>
+          <div class="topic-name">Leading at the Right Level</div>
+          <div class="topic-desc">SD-ready leaders enable performance — they don't replace it. Know where you are operating below your level, what you're doing about it, and what the SD altitude looks like from where you stand.</div>
+          <div class="topic-prompts">
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">How do you decide what to own vs. what to hand off — and how has that changed?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">What work are you still doing that an SD would say belongs to your team?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">When the floor is falling apart, what's the right leadership response at your level?</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-label">Topic B</div>
+          <div class="topic-name">Leadership Routines</div>
+          <div class="topic-desc">Great SDs manage through rhythms, not reactions. Know your weekly leadership calendar, your pre-shift habits, your 1:1 cadence, and why each routine exists.</div>
+          <div class="topic-prompts">
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">Walk me through a typical leadership week — what recurring touchpoints do you own and why?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">How do you use a walk-through or LOD shift to do leadership work — not just operational checks?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">Which routine is most effective and which isn't sticking yet — what's the difference?</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SHIFT ROW -->
+  <div class="shift-row">
+    <div class="shift-header">
+      <div>
+        <div class="shift-title">THE CALL 2 MINDSET SHIFT</div>
+        <div class="shift-sub">From knowing → to doing → to building</div>
+      </div>
+    </div>
+    <div class="shift-grid">
+      <div class="shift-item">
+        <div class="shift-icon">🔄</div>
+        <div class="shift-content">
+          <div class="shift-item-title">Show Evidence, Not Intention</div>
+          <div class="shift-item-desc">Don't tell us what you plan to do. Tell us what you've already changed. Facilitators are looking for behavior, not aspiration.</div>
+        </div>
+      </div>
+      <div class="shift-item">
+        <div class="shift-icon">📡</div>
+        <div class="shift-content">
+          <div class="shift-item-title">Lead Through Others</div>
+          <div class="shift-item-desc">By Call 2, you should be building a more capable team around you. Who is doing more because of what you've invested in them?</div>
+        </div>
+      </div>
+      <div class="shift-item">
+        <div class="shift-icon">🗓️</div>
+        <div class="shift-content">
+          <div class="shift-item-title">Routines, Not Reactions</div>
+          <div class="shift-item-desc">Know your leadership calendar. SDs manage at scale through structured rhythms — not by putting out fires all day.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PREP STRIP -->
+  <div class="prep-strip">
+    <div class="prep-header">
+      <div class="prep-title">5 THINGS TO PREPARE BEFORE CALL 2</div>
+      <div class="prep-sub">Come in with receipts — not plans</div>
+    </div>
+    <div class="prep-grid">
+      <div class="prep-item">
+        <div class="prep-num">01</div>
+        <div class="prep-item-title">Name 1 Person You've Developed</div>
+        <div class="prep-item-desc">Who is more capable today because of something you deliberately did? Know the story and the outcome cold.</div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-num">02</div>
+        <div class="prep-item-title">Map Your Leadership Routines</div>
+        <div class="prep-item-desc">Write out your weekly calendar. What are your recurring touchpoints? Which ones actually move the needle?</div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-num">03</div>
+        <div class="prep-item-title">Know Your Recognition Ratio</div>
+        <div class="prep-item-desc">In a typical week, how many times do you recognize versus hold accountable? What does that tell you about your culture?</div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-num">04</div>
+        <div class="prep-item-title">Audit Your Altitude</div>
+        <div class="prep-item-desc">Where are you still working below your level? Be honest. What specifically are you doing that belongs to your team?</div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-num">05</div>
+        <div class="prep-item-title">Reflect on What Changed</div>
+        <div class="prep-item-desc">Since Call 1, what is actually different about how you lead? Be specific. If nothing has changed, that is the most important thing to address.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      <div class="footer-logo">TARGET</div>
+      <div class="footer-divider"></div>
+      <div class="footer-text">
+        Group Talent Development Series  •  Call 2 of 3<br>
+        ETL → Store Director Pipeline  •  Confidential — Internal Use Only
+      </div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-quote">
+        "Leaders who fail to delegate, fail to multiply. A leader's impact is multiplied through others."
+        <strong>— John C. Maxwell</strong>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

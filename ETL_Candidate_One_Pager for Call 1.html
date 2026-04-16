@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETL Talent Development Call — Candidate Prep Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #CC0000;
+    --red-dark: #900000;
+    --red-light: #fef0f0;
+    --red-mid: #f7d0d0;
+    --ink: #1a1a1a;
+    --ink-mid: #444;
+    --ink-light: #777;
+    --cream: #FDFAF6;
+    --rule: #e0d8d0;
+    --gold: #B8860B;
+    --gold-light: #fdf8ec;
+  }
+
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { box-shadow: none !important; }
+  }
+
+  html, body {
+    background: #d0c8c0;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+  }
+
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    margin: 0.3in auto;
+    background: var(--cream);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+  }
+
+  /* ── HEADER ─────────────────────────────────── */
+  .header {
+    background: var(--red);
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: stretch;
+  }
+
+  .header-left {
+    padding: 0.32in 0.38in 0.28in;
+  }
+
+  .header-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.65);
+    text-transform: uppercase;
+    margin-bottom: 0.07in;
+  }
+
+  .header-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    line-height: 0.95;
+    color: #fff;
+    letter-spacing: 0.02em;
+  }
+
+  .header-title span {
+    color: rgba(255,255,255,0.45);
+  }
+
+  .header-sub {
+    margin-top: 0.1in;
+    font-size: 10.5px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.5;
+  }
+
+  .header-right {
+    background: var(--red-dark);
+    width: 1.5in;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2in;
+    gap: 0.08in;
+  }
+
+  .bullseye {
+    width: 0.65in;
+    height: 0.65in;
+  }
+
+  .header-tag {
+    font-size: 7.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* ── INTRO BAND ─────────────────────────────── */
+  .intro-band {
+    background: var(--red-light);
+    border-top: 3px solid var(--red);
+    border-bottom: 1px solid var(--red-mid);
+    padding: 0.14in 0.38in;
+    display: flex;
+    align-items: center;
+    gap: 0.18in;
+  }
+
+  .intro-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .intro-text {
+    font-size: 10.5px;
+    color: var(--red-dark);
+    line-height: 1.55;
+    font-weight: 500;
+  }
+
+  .intro-text strong {
+    font-weight: 700;
+  }
+
+  /* ── BODY GRID ──────────────────────────────── */
+  .body {
+    padding: 0.22in 0.38in 0.18in;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.18in;
+  }
+
+  /* ── ROOM CARD ──────────────────────────────── */
+  .room {
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .room-header {
+    padding: 0.12in 0.14in 0.1in;
+    display: flex;
+    flex-direction: column;
+    gap: 0.04in;
+  }
+
+  .room-1 .room-header { background: var(--red); }
+  .room-2 .room-header { background: #1A5276; }
+  .room-3 .room-header { background: #4A235A; }
+
+  .room-number {
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .room-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+  }
+
+  .room-facil {
+    font-size: 7.5px;
+    color: rgba(255,255,255,0.65);
+    font-style: italic;
+    margin-top: 0.03in;
+  }
+
+  .room-body {
+    padding: 0.12in 0.14in;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1in;
+  }
+
+  .topic {
+    background: var(--cream);
+    border-radius: 4px;
+    border-left: 3px solid transparent;
+    padding: 0.09in 0.1in;
+  }
+
+  .room-1 .topic { border-color: var(--red); }
+  .room-2 .topic { border-color: #1A5276; }
+  .room-3 .topic { border-color: #4A235A; }
+
+  .topic-label {
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.05in;
+  }
+
+  .topic-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.05in;
+    line-height: 1.25;
+  }
+
+  .topic-desc {
+    font-size: 9px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+
+  .topic-prompts {
+    margin-top: 0.06in;
+    display: flex;
+    flex-direction: column;
+    gap: 0.04in;
+  }
+
+  .prompt {
+    display: flex;
+    gap: 0.06in;
+    align-items: flex-start;
+  }
+
+  .prompt-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 3.5px;
+  }
+
+  .room-1 .prompt-dot { background: var(--red); }
+  .room-2 .prompt-dot { background: #1A5276; }
+  .room-3 .prompt-dot { background: #4A235A; }
+
+  .prompt-text {
+    font-size: 8.5px;
+    color: var(--ink-mid);
+    line-height: 1.45;
+    font-style: italic;
+  }
+
+  /* ── READINESS STRIP ────────────────────────── */
+  .readiness-strip {
+    margin: 0 0.38in;
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .strip-header {
+    background: var(--ink);
+    padding: 0.08in 0.16in;
+    display: flex;
+    align-items: center;
+    gap: 0.1in;
+  }
+
+  .strip-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    color: #fff;
+    letter-spacing: 0.06em;
+  }
+
+  .strip-sub {
+    font-size: 8px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .strip-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .strip-item {
+    padding: 0.1in 0.12in;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 0.04in;
+  }
+
+  .strip-item:last-child { border-right: none; }
+
+  .strip-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--red);
+    line-height: 1;
+  }
+
+  .strip-item-title {
+    font-size: 8.5px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .strip-item-desc {
+    font-size: 7.5px;
+    color: var(--ink-light);
+    line-height: 1.4;
+  }
+
+  /* ── FOOTER ─────────────────────────────────── */
+  .footer {
+    background: var(--ink);
+    padding: 0.1in 0.38in;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.16in;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 0.14in;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: 0.04em;
+  }
+
+  .footer-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  .footer-text {
+    font-size: 8px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+
+  .footer-right {
+    text-align: right;
+  }
+
+  .footer-quote {
+    font-family: 'DM Serif Display', serif;
+    font-size: 9px;
+    font-style: italic;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+    max-width: 2.6in;
+  }
+
+  .footer-quote strong {
+    color: rgba(255,255,255,0.75);
+    font-style: normal;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 7.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 0.03in;
+  }
+
+  /* ── MINDSET ROW ────────────────────────────── */
+  .mindset-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 0.14in 0.38in 0;
+  }
+
+  .mindset-item {
+    padding: 0.09in 0.12in;
+    border-right: 1px solid var(--rule);
+    background: #fff;
+  }
+
+  .mindset-item:last-child { border-right: none; }
+
+  .mindset-icon {
+    font-size: 16px;
+    margin-bottom: 0.04in;
+  }
+
+  .mindset-title {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.03in;
+  }
+
+  .mindset-desc {
+    font-size: 8px;
+    color: var(--ink-mid);
+    line-height: 1.45;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-eyebrow">Executive Team Leader → Store Director Pipeline</div>
+      <div class="header-title">TALENT DEVELOPMENT<br><span>CALL</span> PREP GUIDE</div>
+      <div class="header-sub">
+        You've been identified as an ETL with Store Director potential in the next 12–18 months.<br>
+        This guide will help you walk into each breakout room with clarity, confidence, and real answers.
+      </div>
+    </div>
+    <div class="header-right">
+      <!-- Bullseye SVG -->
+      <svg class="bullseye" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="38" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+        <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+        <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+        <circle cx="40" cy="40" r="10" fill="rgba(255,255,255,0.85)"/>
+        <circle cx="40" cy="40" r="5" fill="rgba(255,255,255,1)"/>
+      </svg>
+      <div class="header-tag">Group Talent<br>Development</div>
+    </div>
+  </div>
+
+  <!-- INTRO BAND -->
+  <div class="intro-band">
+    <div class="intro-icon">💡</div>
+    <div class="intro-text">
+      <strong>What this is:</strong> A series of three developmental calls throughout the year. Each call includes three breakout rooms — Personal Leadership, Guest Experience, and Operations. Facilitators will use guided questions to understand your scope, self-awareness, and readiness. <strong>Come prepared with real examples, honest gaps, and specific plans — not talking points.</strong>
+    </div>
+  </div>
+
+  <!-- THREE ROOMS -->
+  <div class="body">
+
+    <!-- ROOM 1 -->
+    <div class="room room-1">
+      <div class="room-header">
+        <div class="room-number">Breakout Room 01</div>
+        <div class="room-title">Personal<br>Leadership</div>
+        <div class="room-facil">Facilitated by Matt &amp; Sean</div>
+      </div>
+      <div class="room-body">
+
+        <div class="topic">
+          <div class="topic-label">Topic A</div>
+          <div class="topic-name">Know Thyself</div>
+          <div class="topic-desc">How well do you know the leader you are — and the leader you need to become? Be ready to talk about your real strengths, your real blind spots, and how you've changed based on feedback.</div>
+          <div class="topic-prompts">
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">How would your team describe your leadership style vs. how you'd describe it?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">What's the hardest feedback you've received — and what changed because of it?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">How does your leadership shift when you're under pressure?</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-label">Topic B</div>
+          <div class="topic-name">SD Job Description &amp; Profile</div>
+          <div class="topic-desc">Have you actually read the SD job profile — and honestly assessed yourself against it? Know what excites you, where you have gaps, and what your plan is to close them.</div>
+          <div class="topic-prompts">
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">What part of the SD role are you furthest from — and what's your plan?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">If given a store tomorrow, what would your first 30 days look like?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">How are you currently developing the leaders around you?</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ROOM 2 -->
+    <div class="room room-2">
+      <div class="room-header">
+        <div class="room-number">Breakout Room 02</div>
+        <div class="room-title">Guest<br>Experience</div>
+        <div class="room-facil">Guest Experience Facilitators</div>
+      </div>
+      <div class="room-body">
+
+        <div class="topic">
+          <div class="topic-label">Topic A</div>
+          <div class="topic-name">Commitment vs. Compliance</div>
+          <div class="topic-desc">There's a difference between a team that follows the service standard and a team that believes in it. Know which culture you're running — and be ready to explain how you got there.</div>
+          <div class="topic-prompts">
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">What does committed service behavior look like vs. compliant service behavior on your floor?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">When scores are fine but something still feels off — how do you respond?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">How do you personally model guest obsession so your team actually sees it?</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-label">Topic B</div>
+          <div class="topic-name">SD Staffing &amp; Scheduling</div>
+          <div class="topic-desc">Scheduling is a strategic tool, not an admin task. Know how you use traffic data, sales trends, and team availability to build coverage that serves both guests and your team.</div>
+          <div class="topic-prompts">
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">What data or signals drive your staffing decisions — how far ahead do you plan?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">Tell me about a time a staffing gap hurt guest experience. What changed?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">How should an SD's leader schedule differ from a functional area schedule?</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ROOM 3 -->
+    <div class="room room-3">
+      <div class="room-header">
+        <div class="room-number">Breakout Room 03</div>
+        <div class="room-title">Operations</div>
+        <div class="room-facil">Operations Facilitators</div>
+      </div>
+      <div class="room-body">
+
+        <div class="topic">
+          <div class="topic-label">Topic A</div>
+          <div class="topic-name">Elevating Efficiency</div>
+          <div class="topic-desc">The best operators build systems that run without them. Be ready to talk about routines you've built, how you diagnose waste, and where you've improved efficiency without sacrificing team or guest experience.</div>
+          <div class="topic-prompts">
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">What routines in your area run consistently — even when you're not there?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">What operational problem is still unsolved — and why?</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-label">Topic B</div>
+          <div class="topic-name">My Target Dashboard</div>
+          <div class="topic-desc">Know your numbers cold — and be able to tell the story behind them. Facilitators want to know if you read data as a signal or just a score.</div>
+          <div class="topic-prompts">
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">What metrics do you check daily — and what story are they telling right now?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">Which metric are you least confident interpreting — and what's your plan?</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-label">Topic C</div>
+          <div class="topic-name">The SD Lens</div>
+          <div class="topic-desc">Can you read the full store — not just your area? SDs see people, product, and presentation simultaneously. Practice walking in and noticing everything.</div>
+          <div class="topic-prompts">
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">What are the first three things you look for when you walk in — and what do they tell you?</div>
+            </div>
+            <div class="prompt">
+              <div class="prompt-dot"></div>
+              <div class="prompt-text">Tell me about a time you saw a problem outside your area and acted on it anyway.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MINDSET ROW -->
+  <div class="mindset-row">
+    <div class="mindset-item">
+      <div class="mindset-icon">🎯</div>
+      <div class="mindset-title">Be Specific</div>
+      <div class="mindset-desc">Bring real examples with real outcomes. Vague answers signal surface-level thinking. Know your stories cold.</div>
+    </div>
+    <div class="mindset-item">
+      <div class="mindset-icon">🪞</div>
+      <div class="mindset-title">Be Honest</div>
+      <div class="mindset-desc">Name your real gaps. Leaders who can't identify their development areas aren't ready for greater scope.</div>
+    </div>
+    <div class="mindset-item">
+      <div class="mindset-icon">📈</div>
+      <div class="mindset-title">Show Your Plan</div>
+      <div class="mindset-desc">For every gap you name, know what you're actively doing about it. Awareness without action isn't readiness.</div>
+    </div>
+    <div class="mindset-item">
+      <div class="mindset-icon">🏪</div>
+      <div class="mindset-title">Think Total Store</div>
+      <div class="mindset-desc">SD-ready leaders own outcomes beyond their department. Show that your thinking has already made the shift.</div>
+    </div>
+  </div>
+
+  <!-- READINESS STRIP -->
+  <div class="readiness-strip" style="margin-top: 0.14in;">
+    <div class="strip-header">
+      <div>
+        <div class="strip-title">5 THINGS TO PREPARE BEFORE YOUR CALL</div>
+        <div class="strip-sub">Do this work ahead of time — not in the room</div>
+      </div>
+    </div>
+    <div class="strip-grid">
+      <div class="strip-item">
+        <div class="strip-num">01</div>
+        <div class="strip-item-title">Read the SD Job Profile</div>
+        <div class="strip-item-desc">Pull it up. Score yourself honestly on each expectation. Know where you land before someone asks.</div>
+      </div>
+      <div class="strip-item">
+        <div class="strip-num">02</div>
+        <div class="strip-item-title">Know Your Dashboard</div>
+        <div class="strip-item-desc">Review your current metrics. Be ready to explain trends, not just recite numbers.</div>
+      </div>
+      <div class="strip-item">
+        <div class="strip-num">03</div>
+        <div class="strip-item-title">Prep 3 Leadership Stories</div>
+        <div class="strip-item-desc">One showing growth from feedback. One showing accountability. One showing cross-functional ownership.</div>
+      </div>
+      <div class="strip-item">
+        <div class="strip-num">04</div>
+        <div class="strip-item-title">Identify Your #1 Gap</div>
+        <div class="strip-item-desc">Every strong candidate can name it. What's yours — and what are you doing about it right now?</div>
+      </div>
+      <div class="strip-item">
+        <div class="strip-num">05</div>
+        <div class="strip-item-title">Articulate Your "Why"</div>
+        <div class="strip-item-desc">Why do you want to be a Store Director? Make it real, specific, and about impact — not the title.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      <div class="footer-logo">TARGET</div>
+      <div class="footer-divider"></div>
+      <div class="footer-text">
+        Group Talent Development Series<br>
+        ETL → Store Director Pipeline  •  Confidential — Internal Use Only
+      </div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-quote">
+        "When you care for your team first, they will care for your guests, your community."
+        <strong>— Target Chief Guest Experience Officer</strong>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

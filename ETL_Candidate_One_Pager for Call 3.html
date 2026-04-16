@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETL Talent Development Call 3 — Candidate Prep Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #CC0000;
+    --red-dark: #900000;
+    --red-light: #fef0f0;
+    --red-mid: #f7d0d0;
+    --ink: #1a1a1a;
+    --ink-mid: #444;
+    --ink-light: #777;
+    --cream: #FDFAF6;
+    --rule: #e0d8d0;
+    --teal: #1A5276;
+    --teal-light: #EBF5FB;
+    --purple: #4A235A;
+    --purple-light: #F5EEF8;
+  }
+
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { box-shadow: none !important; }
+  }
+
+  html, body { background: #c8c0b8; font-family: 'DM Sans', sans-serif; color: var(--ink); }
+
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    margin: 0.3in auto;
+    background: var(--cream);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.28);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── HEADER ─────────────────────────────────── */
+  .header {
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: stretch;
+  }
+  .header-left { padding: 0.28in 0.38in 0.24in; }
+  .header-eyebrow { font-size: 7.5px; font-weight: 600; letter-spacing: 0.22em; color: rgba(255,255,255,0.45); text-transform: uppercase; margin-bottom: 0.05in; }
+  .header-call-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--red); color: #fff;
+    font-family: 'DM Sans', sans-serif; font-size: 8.5px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 2px; margin-bottom: 0.07in;
+  }
+  .badge-star { font-size: 9px; }
+  .header-title { font-family: 'Bebas Neue', sans-serif; font-size: 40px; line-height: 0.92; color: #fff; letter-spacing: 0.02em; }
+  .header-title span { color: rgba(255,255,255,0.35); }
+  .header-sub { margin-top: 0.09in; font-size: 10px; font-weight: 400; color: rgba(255,255,255,0.65); line-height: 1.55; }
+  .header-right {
+    background: var(--red); width: 1.5in;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 0.2in; gap: 0.07in;
+  }
+  .bullseye { width: 0.58in; height: 0.58in; }
+  .header-tag { font-size: 7px; font-weight: 700; letter-spacing: 0.14em; color: rgba(255,255,255,0.65); text-transform: uppercase; text-align: center; line-height: 1.4; }
+
+  /* ── PROGRESSION BAND ───────────────────────── */
+  .prog-band { background: #222; padding: 0.08in 0.38in; display: flex; align-items: center; gap: 0; }
+  .prog-step { display: flex; align-items: center; gap: 0.07in; }
+  .prog-dot { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 11px; flex-shrink: 0; }
+  .prog-dot.done { background: #555; color: #aaa; }
+  .prog-dot.active { background: var(--red); color: #fff; }
+  .prog-label { font-size: 7.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .prog-label.done { color: #555; }
+  .prog-label.active { color: #fff; }
+  .prog-arrow { color: #444; font-size: 10px; padding: 0 0.1in; }
+
+  /* ── STAKES BAND ────────────────────────────── */
+  .stakes-band {
+    background: var(--red); padding: 0.1in 0.38in;
+    display: flex; align-items: flex-start; gap: 0.14in;
+    border-bottom: 3px solid var(--red-dark);
+  }
+  .stakes-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .stakes-text { font-size: 10px; color: #fff; line-height: 1.55; font-weight: 500; }
+  .stakes-text strong { font-weight: 700; }
+
+  /* ── BODY GRID ──────────────────────────────── */
+  .body { padding: 0.16in 0.38in 0.12in; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.15in; }
+
+  /* ── ROOM CARD ──────────────────────────────── */
+  .room { background: #fff; border-radius: 6px; border: 1px solid var(--rule); overflow: hidden; display: flex; flex-direction: column; }
+  .room-header { padding: 0.1in 0.13in 0.08in; display: flex; flex-direction: column; gap: 0.035in; }
+  .room-1 .room-header { background: var(--ink); }
+  .room-2 .room-header { background: var(--teal); }
+  .room-3 .room-header { background: var(--purple); }
+  .room-number { font-size: 6.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .room-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #fff; letter-spacing: 0.04em; line-height: 1.05; }
+  .room-facil { font-size: 7px; color: rgba(255,255,255,0.55); font-style: italic; margin-top: 0.02in; }
+  .room-body { padding: 0.1in 0.12in; flex: 1; display: flex; flex-direction: column; gap: 0.08in; }
+
+  .topic { background: var(--cream); border-radius: 3px; border-left: 3px solid transparent; padding: 0.07in 0.09in; }
+  .room-1 .topic { border-color: var(--ink); }
+  .room-2 .topic { border-color: var(--teal); }
+  .room-3 .topic { border-color: var(--purple); }
+  .topic-label { font-size: 6.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.035in; }
+  .topic-name { font-size: 10px; font-weight: 700; color: var(--ink); margin-bottom: 0.035in; line-height: 1.2; }
+  .topic-desc { font-size: 8px; color: var(--ink-mid); line-height: 1.45; }
+  .topic-prompts { margin-top: 0.05in; display: flex; flex-direction: column; gap: 0.032in; }
+  .prompt { display: flex; gap: 0.05in; align-items: flex-start; }
+  .prompt-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+  .room-1 .prompt-dot { background: var(--ink); }
+  .room-2 .prompt-dot { background: var(--teal); }
+  .room-3 .prompt-dot { background: var(--purple); }
+  .prompt-text { font-size: 7.5px; color: var(--ink-mid); line-height: 1.4; font-style: italic; }
+
+  /* ── FINAL DETERMINATION ROW ────────────────── */
+  .det-row {
+    margin: 0 0.38in;
+    background: #fff; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden;
+  }
+  .det-header {
+    background: var(--red-dark); padding: 0.07in 0.16in;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .det-title { font-family: 'Bebas Neue', sans-serif; font-size: 14px; color: #fff; letter-spacing: 0.06em; }
+  .det-sub { font-size: 7px; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; }
+  .det-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .det-item { padding: 0.1in 0.14in; border-right: 1px solid var(--rule); }
+  .det-item:last-child { border-right: none; }
+  .det-verdict { font-family: 'Bebas Neue', sans-serif; font-size: 16px; line-height: 1; margin-bottom: 0.04in; }
+  .det-verdict.ready { color: #1A7A3C; }
+  .det-verdict.not-yet { color: var(--red); }
+  .det-verdict.developing { color: #B8860B; }
+  .det-item-title { font-size: 8.5px; font-weight: 700; color: var(--ink); margin-bottom: 0.03in; }
+  .det-item-desc { font-size: 7.5px; color: var(--ink-light); line-height: 1.4; }
+
+  /* ── PREP STRIP ─────────────────────────────── */
+  .prep-strip { margin: 0.12in 0.38in 0; background: #fff; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+  .prep-header { background: var(--ink); padding: 0.07in 0.16in; }
+  .prep-title { font-family: 'Bebas Neue', sans-serif; font-size: 13px; color: #fff; letter-spacing: 0.06em; }
+  .prep-sub { font-size: 7px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; }
+  .prep-grid { display: grid; grid-template-columns: repeat(5, 1fr); }
+  .prep-item { padding: 0.09in 0.1in; border-right: 1px solid var(--rule); display: flex; flex-direction: column; gap: 0.03in; }
+  .prep-item:last-child { border-right: none; }
+  .prep-num { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--red); line-height: 1; }
+  .prep-item-title { font-size: 8px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+  .prep-item-desc { font-size: 7.5px; color: var(--ink-light); line-height: 1.4; }
+
+  /* ── FOOTER ─────────────────────────────────── */
+  .footer { background: var(--ink); padding: 0.09in 0.38in; display: flex; align-items: center; justify-content: space-between; margin-top: 0.13in; }
+  .footer-left { display: flex; align-items: center; gap: 0.14in; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #fff; letter-spacing: 0.04em; }
+  .footer-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.2); }
+  .footer-text { font-size: 7.5px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+  .footer-right { text-align: right; }
+  .footer-quote { font-family: 'DM Serif Display', serif; font-size: 8.5px; font-style: italic; color: rgba(255,255,255,0.4); line-height: 1.5; max-width: 2.8in; }
+  .footer-quote strong { color: rgba(255,255,255,0.6); font-style: normal; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 7px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-top: 0.02in; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-eyebrow">Executive Team Leader → Store Director Pipeline</div>
+      <div class="header-call-badge"><span class="badge-star">★</span> Final Call — Call 3 of 3</div>
+      <div class="header-title">TALENT DEVELOPMENT<br><span>FINAL CALL</span> PREP GUIDE</div>
+      <div class="header-sub">
+        This is the year-end assessment. Facilitators are not asking if you understand the SD role —<br>
+        they are deciding if you are ready to own one. Come in with proof, not plans.
+      </div>
+    </div>
+    <div class="header-right">
+      <svg class="bullseye" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="38" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+        <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>
+        <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(255,255,255,0.32)" stroke-width="2"/>
+        <circle cx="40" cy="40" r="10" fill="rgba(255,255,255,0.82)"/>
+        <circle cx="40" cy="40" r="5" fill="rgba(255,255,255,1)"/>
+      </svg>
+      <div class="header-tag">Group Talent<br>Development</div>
+    </div>
+  </div>
+
+  <!-- PROGRESSION BAND -->
+  <div class="prog-band">
+    <div class="prog-step"><div class="prog-dot done">1</div><div class="prog-label done">Call 1 Complete</div></div>
+    <div class="prog-arrow">›</div>
+    <div class="prog-step"><div class="prog-dot done">2</div><div class="prog-label done">Call 2 Complete</div></div>
+    <div class="prog-arrow">›</div>
+    <div class="prog-step"><div class="prog-dot active">3</div><div class="prog-label active">Call 3 — Final Assessment</div></div>
+  </div>
+
+  <!-- STAKES BAND -->
+  <div class="stakes-band">
+    <div class="stakes-icon">🎯</div>
+    <div class="stakes-text">
+      <strong>This is the year-end readiness determination.</strong> By the end of this call, your facilitators will answer one question: Is this leader ready to own a store in the next 12 months? Come prepared with your business story, Q4 evidence, and a clear picture of your store's consistency — including where it still falls short. <strong>Candidates who can name their gaps with confidence and a plan will be taken more seriously than those who can only name their strengths.</strong>
+    </div>
+  </div>
+
+  <!-- THREE ROOMS -->
+  <div class="body">
+
+    <!-- ROOM 1 -->
+    <div class="room room-1">
+      <div class="room-header">
+        <div class="room-number">Breakout Room 01</div>
+        <div class="room-title">Personal<br>Leadership</div>
+        <div class="room-facil">Facilitated by Matt &amp; Sean</div>
+      </div>
+      <div class="room-body">
+
+        <div class="topic">
+          <div class="topic-label">Topic A</div>
+          <div class="topic-name">Business Confidence &amp; Business Acumen</div>
+          <div class="topic-desc">Can you give a 2-minute business overview — results, trends, risks, and opportunities — right now, without notes? SDs lead business conversations, not just operational ones. Know your numbers. Tell the story.</div>
+          <div class="topic-prompts">
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">Give me a 2-minute overview of your business right now — results, trends, risks, and opportunities.</div></div>
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">What is one area where results are not where you want them — what is your theory, and what is your plan?</div></div>
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">What is the biggest business risk you are managing right now — and what are you doing about it?</div></div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-label">Topic B</div>
+          <div class="topic-name">Visit Kick-Off</div>
+          <div class="topic-desc">If your DTL walked in right now, could you lead the first 60 seconds with confidence? Know your opening, know what you want them to see, and know how to own the gaps before they find them.</div>
+          <div class="topic-prompts">
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">DTL just walked in. What do you say in the first 60 seconds?</div></div>
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">What is one thing you would proactively share with a visiting leader before they had to ask?</div></div>
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">How does your team perform on an unannounced visit vs. an announced one — and what does that tell you?</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ROOM 2 -->
+    <div class="room room-2">
+      <div class="room-header">
+        <div class="room-number">Breakout Room 02</div>
+        <div class="room-title">Guest<br>Experience</div>
+        <div class="room-facil">Guest Experience Facilitators</div>
+      </div>
+      <div class="room-body">
+
+        <div class="topic">
+          <div class="topic-label">Topic A</div>
+          <div class="topic-name">Peak Season Leadership</div>
+          <div class="topic-desc">Q4 is the final exam for your guest culture. What standards do you hold no matter what? How do you keep your team energized and your guests feeling the brand promise at its busiest and most intense?</div>
+          <div class="topic-prompts">
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">What changes about your guest experience leadership at peak volume — and what stays exactly the same?</div></div>
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">Tell me about a Q4 moment where your leadership made a real difference for your team or guests.</div></div>
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">How do you stay energized as a leader through a 6–8 week holiday grind — and how does that affect your team?</div></div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-label">Topic B</div>
+          <div class="topic-name">Q4 Staffing, Scheduling &amp; Training</div>
+          <div class="topic-desc">Q4 execution starts in late summer — not October. Know your staffing plan, your seasonal training approach, your scheduling strategy for peak windows, and what you will do differently this year than last.</div>
+          <div class="topic-prompts">
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">How far ahead do you plan Q4 staffing — and what inputs drive your headcount decisions by week?</div></div>
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">What is your plan for getting seasonal team members from hired to guest-ready as fast as possible?</div></div>
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">After Q4, how do you debrief — and how does that change how you plan the following year?</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ROOM 3 -->
+    <div class="room room-3">
+      <div class="room-header">
+        <div class="room-number">Breakout Room 03</div>
+        <div class="room-title">Operations</div>
+        <div class="room-facil">Operations Facilitators</div>
+      </div>
+      <div class="room-body">
+
+        <div class="topic">
+          <div class="topic-label">Topic A</div>
+          <div class="topic-name">Consistency in Fundamentals</div>
+          <div class="topic-desc">Name your three strongest fundamentals and why they hold. Name the one that does not — and be specific. Facilitators are looking for a leader who has built execution into their culture, not just their presence.</div>
+          <div class="topic-prompts">
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">Name three fundamentals you are most confident are executed consistently every day — and what makes them that way?</div></div>
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">Name the fundamental you are least confident in — and tell me exactly why and what you are doing about it.</div></div>
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">What happens to your fundamentals when you have high call-outs, reduced payroll, or back-to-back disruptions?</div></div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-label">Topic B</div>
+          <div class="topic-name">Predictability vs. Chaos</div>
+          <div class="topic-desc">Does your store feel the same every day — or does it depend on who is working, what time it is, and whether you are there? Predictability is built by design. Know what you have built and where entropy still wins.</div>
+          <div class="topic-prompts">
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">What do you do deliberately to reduce variability in how your area operates shift to shift?</div></div>
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">What is the biggest source of chaos in your current operation — and what is your role in it?</div></div>
+            <div class="prompt"><div class="prompt-dot"></div><div class="prompt-text">If a new SD walked into your area for the first time, what would tell them this is a well-led operation — and what might give them pause?</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FINAL DETERMINATION ROW -->
+  <div class="det-row">
+    <div class="det-header">
+      <div>
+        <div class="det-title">WHAT FACILITATORS ARE DECIDING AFTER THIS CALL</div>
+        <div class="det-sub">Three possible outcomes — know which one you are working toward</div>
+      </div>
+    </div>
+    <div class="det-grid">
+      <div class="det-item">
+        <div class="det-verdict ready">SD READY</div>
+        <div class="det-item-title">Ready in the next 12 months</div>
+        <div class="det-item-desc">Consistent evidence across all three calls. Business fluency without prompting. Q4 proof points. Predictable, self-sustaining operation. Can name gaps and has active plans.</div>
+      </div>
+      <div class="det-item">
+        <div class="det-verdict developing">DEVELOPING</div>
+        <div class="det-item-title">Strong trajectory — specific gap remains</div>
+        <div class="det-item-desc">Clear growth from Call 1 to Call 3. One or two meaningful gaps still present. On track with targeted development in the next 6–12 months before placement.</div>
+      </div>
+      <div class="det-item">
+        <div class="det-verdict not-yet">NOT YET</div>
+        <div class="det-item-title">Continued development needed</div>
+        <div class="det-item-desc">Limited evidence of behavioral change across the year. Awareness has not translated into action. Business fluency, fundamentals, or culture gaps are significant. Re-evaluate next cycle.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PREP STRIP -->
+  <div class="prep-strip">
+    <div class="prep-header">
+      <div class="prep-title">5 THINGS TO PREPARE BEFORE THE FINAL CALL</div>
+      <div class="prep-sub">This is the year-end close — bring your best evidence</div>
+    </div>
+    <div class="prep-grid">
+      <div class="prep-item">
+        <div class="prep-num">01</div>
+        <div class="prep-item-title">Know Your Business Story Cold</div>
+        <div class="prep-item-desc">Practice a 2-minute business overview out loud. Results, trends, one risk, one opportunity. No notes. Be ready to deliver it on demand.</div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-num">02</div>
+        <div class="prep-item-title">Prep Your Visit Kick-Off</div>
+        <div class="prep-item-desc">Write and rehearse your 60-second DTL opening. Know what you want them to see, and know what gap you will own before they find it.</div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-num">03</div>
+        <div class="prep-item-title">Reflect on Q4</div>
+        <div class="prep-item-desc">What worked in your Q4 staffing, scheduling, and training? What fell short? What will you do differently? Have specific examples ready.</div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-num">04</div>
+        <div class="prep-item-title">Audit Your Fundamentals</div>
+        <div class="prep-item-desc">Name your three strongest and your one weakest. Be specific about why each holds or does not hold — and what you are doing about the weak one.</div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-num">05</div>
+        <div class="prep-item-title">Identify What Changed Since Call 1</div>
+        <div class="prep-item-desc">The most powerful thing you can do in this call is show growth across the year. Be ready to name exactly what is different — in you, your team, and your operation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      <div class="footer-logo">TARGET</div>
+      <div class="footer-divider"></div>
+      <div class="footer-text">
+        Group Talent Development Series  •  Call 3 of 3  •  Year-End Assessment<br>
+        ETL → Store Director Pipeline  •  Confidential — Internal Use Only
+      </div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-quote">
+        "In retail, we have a chance to change lives — seeing a team member grow and move up in responsibility and leadership."
+        <strong>— Abubakarr Bangura, Group VP, Target Corporation</strong>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

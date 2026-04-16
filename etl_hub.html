@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Target ETL Talent Development Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#CC0000;--red-dk:#8B0000;--red-lt:#fef2f2;--red-mid:#fee2e2;
+  --teal:#1A5276;--purple:#4A235A;
+  --ink:#111827;--ink-mid:#374151;--ink-lt:#6B7280;
+  --surface:#FFFFFF;--bg:#F8F5F1;--rule:#E5E0D8;
+  --gold:#B8860B;--gold-lt:#fdf8ec;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;min-height:100vh}
+
+/* ── SIDEBAR NAV ─────────────────────────────── */
+.layout{display:flex;min-height:100vh}
+.sidebar{width:240px;background:var(--ink);flex-shrink:0;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sidebar-logo{padding:22px 20px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sidebar-bullseye{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.bullseye-svg{width:28px;height:28px}
+.sidebar-brand{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em;color:#fff}
+.sidebar-sub{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;line-height:1.4}
+.sidebar-nav{padding:14px 0;flex:1}
+.nav-section{padding:6px 20px 4px;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:8px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;font-size:13px;color:rgba(255,255,255,.65);cursor:pointer;transition:all .15s;border-left:3px solid transparent;text-decoration:none}
+.nav-item:hover{background:rgba(255,255,255,.07);color:#fff}
+.nav-item.active{background:rgba(204,0,0,.25);color:#fff;border-left-color:var(--red)}
+.nav-item .nav-icon{width:16px;height:16px;flex-shrink:0;opacity:.7}
+.nav-item.active .nav-icon{opacity:1}
+.nav-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.nd-r{background:var(--red)}
+.nd-t{background:#1D9E75}
+.nd-p{background:#7F77DD}
+.sidebar-footer{padding:14px 20px;border-top:1px solid rgba(255,255,255,.08)}
+.sf-txt{font-size:10px;color:rgba(255,255,255,.3);line-height:1.5}
+
+/* ── MAIN CONTENT ───────────────────────────── */
+.main{flex:1;overflow-x:hidden}
+
+/* ── HERO ───────────────────────────────────── */
+.hero{background:var(--red);padding:36px 40px 32px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;background:rgba(0,0,0,.08)}
+.hero::after{content:'';position:absolute;right:40px;bottom:-80px;width:200px;height:200px;border-radius:50%;background:rgba(0,0,0,.06)}
+.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:.95;color:#fff;letter-spacing:.02em;margin-bottom:12px;position:relative}
+.hero-title span{color:rgba(255,255,255,.35)}
+.hero-desc{font-size:13px;color:rgba(255,255,255,.75);max-width:520px;line-height:1.6;position:relative}
+.hero-meta{margin-top:20px;display:flex;gap:20px;flex-wrap:wrap}
+.hero-badge{display:flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(255,255,255,.12);border-radius:20px;font-size:11px;color:rgba(255,255,255,.8);font-weight:500}
+
+/* ── SECTION ────────────────────────────────── */
+.section{padding:36px 40px;border-bottom:1px solid var(--rule)}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em;color:var(--ink);margin-bottom:4px}
+.section-desc{font-size:13px;color:var(--ink-lt);margin-bottom:22px;line-height:1.5}
+
+/* ── CALL CARDS ─────────────────────────────── */
+.call-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.call-card{background:var(--surface);border-radius:12px;border:1px solid var(--rule);overflow:hidden;transition:transform .2s,border-color .2s}
+.call-card:hover{transform:translateY(-2px);border-color:#ccc}
+.call-card-header{padding:16px 18px 14px}
+.call-card-header.c1{background:var(--red)}
+.call-card-header.c2{background:var(--teal)}
+.call-card-header.c3{background:var(--purple)}
+.cc-num{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:4px}
+.cc-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;letter-spacing:.04em;margin-bottom:2px}
+.cc-sub{font-size:10px;color:rgba(255,255,255,.6)}
+.call-card-body{padding:16px 18px}
+.room-pill{display:flex;align-items:center;gap:7px;padding:6px 0;border-bottom:1px solid var(--rule)}
+.room-pill:last-child{border-bottom:none}
+.rp-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.rp-label{font-size:11px;color:var(--ink-lt);font-weight:500;min-width:50px}
+.rp-topics{font-size:11px;color:var(--ink-mid)}
+
+/* ── DOCUMENT LIBRARY ───────────────────────── */
+.doc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.doc-group{grid-column:span 3;margin-top:8px}
+.doc-group-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.dgl-line{flex:1;height:1px;background:var(--rule)}
+.doc-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.doc-card{background:var(--surface);border-radius:10px;border:1px solid var(--rule);padding:14px 16px;display:flex;align-items:flex-start;gap:12px;transition:all .18s;cursor:pointer;text-decoration:none}
+.doc-card:hover{border-color:#CC0000;transform:translateY(-1px)}
+.doc-icon{width:38px;height:46px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700;letter-spacing:.04em}
+.di-docx{background:#dbeafe;color:#1e40af}
+.di-html{background:#dcfce7;color:#166534}
+.doc-info{}
+.doc-name{font-size:12px;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:3px}
+.doc-meta{font-size:11px;color:var(--ink-lt)}
+.doc-actions{margin-top:8px;display:flex;gap:6px}
+.da-btn{padding:4px 10px;border-radius:5px;font-size:10px;font-weight:600;cursor:pointer;transition:all .15s;border:none;text-decoration:none;display:inline-block}
+.da-primary{background:var(--red);color:#fff}
+.da-primary:hover{background:var(--red-dk)}
+.da-sec{background:var(--bg);color:var(--ink-mid);border:1px solid var(--rule)}
+.da-sec:hover{background:#eee}
+
+/* ── UPLOAD ZONE ────────────────────────────── */
+.upload-zone{border:2px dashed var(--rule);border-radius:10px;padding:24px;text-align:center;cursor:pointer;transition:all .2s;background:var(--surface);margin-bottom:14px}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--red);background:var(--red-lt)}
+.upload-zone input{display:none}
+.uz-icon{margin-bottom:8px}
+.uz-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.uz-sub{font-size:11px;color:var(--ink-lt)}
+.upload-list{display:flex;flex-direction:column;gap:6px}
+.upload-item{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:12px}
+.ui-icon{width:32px;height:38px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.ui-name{font-size:12px;font-weight:500;color:var(--ink);flex:1}
+.ui-size{font-size:11px;color:var(--ink-lt)}
+.ui-remove{padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600;background:var(--red-mid);color:var(--red-dk);border:none;cursor:pointer}
+.ui-remove:hover{background:#fca5a5}
+
+/* ── ASSESSMENT TOOL ────────────────────────── */
+.assessment-wrap{background:var(--surface);border-radius:12px;border:1px solid var(--rule);overflow:hidden}
+
+/* ── FACILITATOR GUIDE ──────────────────────── */
+.guide-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.guide-card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px;border-top:3px solid var(--red)}
+.guide-card.c2{border-top-color:var(--teal)}
+.guide-card.c3{border-top-color:var(--purple)}
+.gc-room{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:4px}
+.gc-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.gc-topic{font-size:11px;color:var(--ink-lt);padding:4px 0;border-bottom:1px solid var(--rule)}
+.gc-topic:last-child{border-bottom:none}
+.gc-topic strong{color:var(--ink-mid)}
+
+/* ── INFO BANNER ────────────────────────────── */
+.info-banner{background:var(--gold-lt);border:1px solid #e9d5a0;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:#78540a;display:flex;gap:10px;align-items:flex-start;line-height:1.5}
+.ib-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+
+/* ── ASSESSMENT EMBED ───────────────────────── */
+#assessment-tool{padding:0}
+.tool-header{background:var(--ink);padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
+.th-title{font-family:'Bebas Neue',sans-serif;font-size:20px;color:#fff;letter-spacing:.06em}
+.th-sub{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
+.sync-badge{font-size:10px;padding:4px 10px;border-radius:10px;font-weight:500;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);display:flex;align-items:center;gap:5px}
+.sync-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0}
+.sync-dot.syncing{background:#fbbf24;animation:pulse 1s infinite}
+.sync-dot.err{background:#f87171}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* TOOL INTERIOR */
+.tool-inner{padding:18px 20px}
+.t-id-bar{background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;margin-bottom:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.t-id-bar input,.t-id-bar select{padding:6px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink)}
+.t-id-bar input:focus,.t-id-bar select:focus{outline:none;border-color:var(--red)}
+.t-id-lbl{font-size:11px;color:var(--ink-lt);white-space:nowrap}
+.t-set-btn{padding:7px 16px;background:var(--red);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
+.t-set-btn:hover{background:var(--red-dk)}
+.t-set-btn.secondary{background:#f3f4f6;color:var(--ink-mid);border:1px solid #d1d5db}
+.t-set-btn.secondary:hover{background:#e5e7eb}
+
+.t-prog{background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:12px}
+.t-prog-txt{font-size:12px;color:var(--ink-lt)}
+.t-prog-txt strong{color:var(--ink);font-weight:600}
+.t-prog-track{flex:1;height:5px;background:#e5e7eb;border-radius:3px;overflow:hidden}
+.t-prog-fill{height:100%;background:var(--red);border-radius:3px;transition:width .3s}
+.t-prog-pct{font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap}
+
+.t-views{display:flex;gap:5px;margin-bottom:12px}
+.t-view-btn{padding:6px 14px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid #d1d5db;background:#f9fafb;color:var(--ink-lt);transition:all .15s}
+.t-view-btn:hover{background:#f3f4f6;color:var(--ink)}
+.t-view-btn.act{background:var(--red);color:#fff;border-color:var(--red)}
+
+.t-leader-tabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+.t-ltab{padding:5px 10px;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;border:1px solid #e5e7eb;background:#f9fafb;color:var(--ink-lt);transition:all .15s;position:relative}
+.t-ltab:hover{background:#f3f4f6;color:var(--ink)}
+.t-ltab.act{background:var(--red);color:#fff;border-color:var(--red)}
+.t-ltab .cdot{width:5px;height:5px;border-radius:50%;background:#22c55e;position:absolute;top:3px;right:3px}
+
+.t-room-tabs{display:flex;gap:6px;margin-bottom:12px}
+.t-rtab{flex:1;padding:9px 10px;border-radius:8px;border:1px solid #e5e7eb;background:#f9fafb;cursor:pointer;transition:all .15s}
+.t-rtab:hover{border-color:#9ca3af}
+.t-rtab.ar1{background:var(--red);border-color:var(--red);color:#fff}
+.t-rtab.ar2{background:var(--teal);border-color:var(--teal);color:#fff}
+.t-rtab.ar3{background:var(--purple);border-color:var(--purple);color:#fff}
+.t-rtab-lbl{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.65;margin-bottom:2px}
+.t-rtab-name{font-size:12px;font-weight:600}
+.t-rtab-topics{font-size:9px;opacity:.65;margin-top:1px}
+
+.t-card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:16px;margin-bottom:10px}
+.t-card-head{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.t-cdot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.t-cdot-r1{background:var(--red)}
+.t-cdot-r2{background:var(--teal)}
+.t-cdot-r3{background:var(--purple)}
+.t-card-title{font-size:14px;font-weight:600;color:var(--ink)}
+.t-card-sub{font-size:11px;color:var(--ink-lt);margin-top:1px}
+
+.t-dim-row{margin-bottom:16px}
+.t-dim-lbl{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.t-dim-desc{font-size:11px;color:var(--ink-lt);margin-bottom:7px;line-height:1.4}
+.t-score-opts{display:flex;gap:5px}
+.t-sopt{flex:1;padding:7px 3px;border-radius:6px;border:1px solid #e5e7eb;text-align:center;cursor:pointer;transition:all .15s;background:#f9fafb}
+.t-sopt:hover{border-color:#9ca3af}
+.t-snum{font-size:14px;font-weight:600;color:#9ca3af}
+.t-slbl{font-size:8px;color:#9ca3af;margin-top:1px;letter-spacing:.03em}
+.ts1,.ts2{background:#fef2f2;border-color:#fca5a5}.ts1 .t-snum,.ts2 .t-snum{color:#dc2626}
+.ts3{background:#fffbeb;border-color:#fcd34d}.ts3 .t-snum{color:#b45309}
+.ts4,.ts5{background:#f0fdf4;border-color:#86efac}.ts4 .t-snum,.ts5 .t-snum{color:#16a34a}
+
+.t-divider{height:1px;background:#e5e7eb;margin:14px 0}
+
+.t-field-wrap{margin-bottom:12px}
+.t-field-lbl{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:5px;display:flex;align-items:center;gap:6px}
+.t-ftag{font-size:10px;padding:1px 7px;border-radius:10px;font-weight:500}
+.t-ta{width:100%;border:1px solid #d1d5db;border-radius:7px;padding:8px 10px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--ink);background:#f9fafb;resize:vertical;min-height:62px;line-height:1.5;transition:border-color .15s}
+.t-ta:focus{outline:none;border-color:var(--red)}
+.t-ta::placeholder{color:#9ca3af;font-style:italic}
+
+.t-flag-opts{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.t-fopt{padding:5px 12px;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;border:1px solid #e5e7eb;background:#f9fafb;color:var(--ink-lt);transition:all .15s}
+.t-fopt:hover{border-color:#9ca3af}
+.t-fa{background:#dcfce7;border-color:#86efac;color:#166534}
+.t-fw{background:#fef3c7;border-color:#fcd34d;color:#92400e}
+.t-fc{background:#fee2e2;border-color:#fca5a5;color:#991b1b}
+.t-fn{background:#f3f4f6;border-color:#d1d5db;color:var(--ink)}
+
+.t-save-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;margin-top:4px}
+.t-ss{font-size:12px;color:var(--ink-lt)}
+.t-ss.ok{color:#16a34a}
+.t-ss.syncing{color:#b45309}
+.t-ss.err{color:#dc2626}
+.t-save-btn{padding:8px 20px;background:var(--red);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:background .15s}
+.t-save-btn:hover{background:var(--red-dk)}
+.t-save-btn:disabled{background:#d1d5db;color:#9ca3af;cursor:not-allowed}
+
+.t-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.t-stat{background:#f9fafb;border-radius:8px;padding:12px 14px;text-align:center;border:1px solid #e5e7eb}
+.t-stat-v{font-size:22px;font-weight:600;color:var(--ink)}
+.t-stat-l{font-size:11px;color:var(--ink-lt);margin-top:2px}
+
+.t-sum-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.t-scard{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:13px;cursor:pointer;transition:all .15s}
+.t-scard:hover{border-color:var(--red);transform:translateY(-1px)}
+.t-sc-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.t-sc-init{width:30px;height:30px;border-radius:50%;background:#dbeafe;color:#1e40af;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0}
+.t-sc-name{font-size:13px;font-weight:600;color:var(--ink)}
+.t-sc-badges{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:5px}
+.t-sc-badge{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:500}
+.t-br1{background:#fee2e2;color:#991b1b}
+.t-br2{background:#dbeafe;color:#1e40af}
+.t-br3{background:#ede9fe;color:#6d28d9}
+.t-sc-empty{font-size:11px;color:var(--ink-lt);font-style:italic}
+.t-sc-flag{font-size:10px;padding:2px 8px;border-radius:10px;display:inline-block;margin-top:2px}
+.t-fla{background:#dcfce7;color:#166534}
+.t-flw{background:#fef3c7;color:#92400e}
+.t-flc{background:#fee2e2;color:#991b1b}
+
+.t-exp-ta{width:100%;border:1px solid #d1d5db;border-radius:7px;padding:10px;font-size:11px;font-family:'Courier New',monospace;color:var(--ink);background:#f9fafb;height:260px;resize:vertical;line-height:1.5}
+.t-copy-btn{margin-top:8px;padding:7px 16px;background:#f9fafb;border:1px solid #d1d5db;border-radius:6px;font-size:12px;cursor:pointer;color:var(--ink);font-family:'DM Sans',sans-serif}
+.t-copy-btn:hover{background:#f3f4f6}
+
+.t-conflict{background:#fffbeb;border:1px solid #fcd34d;border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:12px;color:#92400e;display:flex;align-items:center;gap:10px}
+.t-conflict-btn{padding:4px 12px;background:#b45309;color:#fff;border:none;border-radius:5px;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif}
+
+.t-loading{text-align:center;padding:40px 20px;color:var(--ink-lt);font-size:13px}
+.t-spinner{display:inline-block;width:18px;height:18px;border:2px solid #e5e7eb;border-top-color:var(--red);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media(max-width:800px){
+  .sidebar{display:none}
+  .call-cards,.doc-row,.guide-cards,.t-stats-grid{grid-template-columns:1fr}
+  .hero{padding:24px 20px}
+  .hero-title{font-size:36px}
+  .section{padding:24px 20px}
+  .tool-inner{padding:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+<!-- ── SIDEBAR ──────────────────────────────── -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-bullseye">
+      <svg class="bullseye-svg" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+        <circle cx="20" cy="20" r="13" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+        <circle cx="20" cy="20" r="7" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+        <circle cx="20" cy="20" r="4" fill="rgba(255,255,255,0.85)"/>
+      </svg>
+      <span class="sidebar-brand">TARGET</span>
+    </div>
+    <div class="sidebar-sub">ETL Talent Development<br>Store Director Pipeline</div>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-section">Overview</div>
+    <a class="nav-item active" href="#overview" onclick="setActive(this)">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+      Program overview
+    </a>
+    <div class="nav-section">Call Resources</div>
+    <a class="nav-item" href="#call1" onclick="setActive(this)">
+      <span class="nav-dot nd-r"></span>Call 1 resources
+    </a>
+    <a class="nav-item" href="#call2" onclick="setActive(this)">
+      <span class="nav-dot nd-t"></span>Call 2 resources
+    </a>
+    <a class="nav-item" href="#call3" onclick="setActive(this)">
+      <span class="nav-dot nd-p"></span>Call 3 resources
+    </a>
+    <div class="nav-section">Assessment</div>
+    <a class="nav-item" href="#assessment" onclick="setActive(this)">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M3 4h10M3 12h6"/></svg>
+      Assessment loop
+    </a>
+    <a class="nav-item" href="#upload" onclick="setActive(this)">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 10V3M5 6l3-3 3 3M3 13h10"/></svg>
+      Upload documents
+    </a>
+  </div>
+  <div class="sidebar-footer">
+    <div class="sf-txt">Target Group<br>Talent Development Series<br>Confidential — Internal use only</div>
+  </div>
+</nav>
+
+<!-- ── MAIN ──────────────────────────────────── -->
+<main class="main">
+
+  <!-- HERO -->
+  <div class="hero" id="overview">
+    <div class="hero-eyebrow">Executive Team Leader → Store Director Pipeline</div>
+    <div class="hero-title">ETL TALENT<br><span>DEVELOPMENT</span><br>HUB</div>
+    <div class="hero-desc">Your central resource for all three developmental calls. Access facilitator guides, candidate prep materials, and the shared assessment loop — all in one place.</div>
+    <div class="hero-meta">
+      <div class="hero-badge">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><path d="M6 3v3l2 1"/></svg>
+        3 Developmental calls
+      </div>
+      <div class="hero-badge">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"><path d="M1 10L4 7l2 2 5-6"/></svg>
+        16 ETL candidates
+      </div>
+      <div class="hero-badge">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"><rect x="1" y="1" width="10" height="10" rx="2"/><path d="M4 6h4M4 4h4M4 8h2"/></svg>
+        3 Breakout rooms per call
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRAM OVERVIEW -->
+  <div class="section">
+    <div class="section-title">Program structure</div>
+    <div class="section-desc">Three calls across the year. Each call builds on the last — baseline, growth, readiness determination.</div>
+    <div class="call-cards">
+      <div class="call-card">
+        <div class="call-card-header c1">
+          <div class="cc-num">Call 1 — Baseline</div>
+          <div class="cc-title">Who Are You As a Leader?</div>
+          <div class="cc-sub">Self-awareness · SD alignment · Operational foundation</div>
+        </div>
+        <div class="call-card-body">
+          <div class="room-pill"><span class="rp-dot" style="background:var(--red)"></span><span class="rp-label">Room 1</span><span class="rp-topics">Know Thyself · SD Job Profile</span></div>
+          <div class="room-pill"><span class="rp-dot" style="background:var(--teal)"></span><span class="rp-label">Room 2</span><span class="rp-topics">Commitment vs. Compliance · Staffing</span></div>
+          <div class="room-pill"><span class="rp-dot" style="background:var(--purple)"></span><span class="rp-label">Room 3</span><span class="rp-topics">Efficiency · Dashboard · SD Lens</span></div>
+        </div>
+      </div>
+      <div class="call-card">
+        <div class="call-card-header c2">
+          <div class="cc-num">Call 2 — Growth</div>
+          <div class="cc-title">What Have You Changed?</div>
+          <div class="cc-sub">Behavior evidence · Delegation · Guest culture depth</div>
+        </div>
+        <div class="call-card-body">
+          <div class="room-pill"><span class="rp-dot" style="background:var(--red)"></span><span class="rp-label">Room 1</span><span class="rp-topics">Good Boss · Distributing Competence</span></div>
+          <div class="room-pill"><span class="rp-dot" style="background:var(--teal)"></span><span class="rp-label">Room 2</span><span class="rp-topics">GREET · Recognition vs. Accountability</span></div>
+          <div class="room-pill"><span class="rp-dot" style="background:var(--purple)"></span><span class="rp-label">Room 3</span><span class="rp-topics">Right Level · Leadership Routines</span></div>
+        </div>
+      </div>
+      <div class="call-card">
+        <div class="call-card-header c3">
+          <div class="cc-num">Call 3 — Final</div>
+          <div class="cc-title">Are You Ready to Own a Store?</div>
+          <div class="cc-sub">Business fluency · Q4 leadership · Predictability</div>
+        </div>
+        <div class="call-card-body">
+          <div class="room-pill"><span class="rp-dot" style="background:var(--red)"></span><span class="rp-label">Room 1</span><span class="rp-topics">Business Acumen · Visit Kick-Off</span></div>
+          <div class="room-pill"><span class="rp-dot" style="background:var(--teal)"></span><span class="rp-label">Room 2</span><span class="rp-topics">Peak Season · Q4 Staffing & Training</span></div>
+          <div class="room-pill"><span class="rp-dot" style="background:var(--purple)"></span><span class="rp-label">Room 3</span><span class="rp-topics">Fundamentals · Predictability vs. Chaos</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALL 1 RESOURCES -->
+  <div class="section" id="call1">
+    <div class="section-title">Call 1 resources</div>
+    <div class="section-desc">Facilitator guide with questions and rubrics, plus the candidate prep sheet to distribute before the call.</div>
+    <div class="info-banner">
+      <span class="ib-icon">💡</span>
+      <span>Distribute the <strong>ETL one-pager</strong> to candidates 3–5 days before Call 1. The <strong>facilitator guide</strong> is for Group Directors, GVPs, HRBPs, and DSDs only — do not share with candidates.</span>
+    </div>
+    <div class="doc-row">
+      <div class="doc-card" onclick="downloadDoc('call1-guide')">
+        <div class="doc-icon di-docx">DOCX</div>
+        <div class="doc-info">
+          <div class="doc-name">Call 1 Facilitator Guide</div>
+          <div class="doc-meta">All three breakout rooms · Questions & rubrics · Facilitator notes</div>
+          <div class="doc-actions">
+            <span class="da-btn da-primary" onclick="event.stopPropagation();downloadDoc('call1-guide')">Download</span>
+            <span class="da-btn da-sec">Facilitators only</span>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card" onclick="openDoc('call1-onepager')">
+        <div class="doc-icon di-html" style="background:#fef3c7;color:#92400e">HTML</div>
+        <div class="doc-info">
+          <div class="doc-name">Call 1 Candidate One-Pager</div>
+          <div class="doc-meta">ETL prep guide · Room topics · 5 things to prepare</div>
+          <div class="doc-actions">
+            <span class="da-btn da-primary" onclick="event.stopPropagation();openDoc('call1-onepager')">Open</span>
+            <span class="da-btn da-sec" onclick="event.stopPropagation();printDoc('call1-onepager')">Print / PDF</span>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card" style="cursor:default;border-style:dashed;background:var(--bg)">
+        <div class="doc-icon" style="background:#f3f4f6;color:#9ca3af">+</div>
+        <div class="doc-info">
+          <div class="doc-name" style="color:#9ca3af">Additional resource</div>
+          <div class="doc-meta">Upload a supplemental file for Call 1 using the Upload section below</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALL 2 RESOURCES -->
+  <div class="section" id="call2">
+    <div class="section-title">Call 2 resources</div>
+    <div class="section-desc">Builds on Call 1 baselines — emphasizes behavioral change, distribution of competence, and Greet · Help · Thank.</div>
+    <div class="doc-row">
+      <div class="doc-card" onclick="downloadDoc('call2-guide')">
+        <div class="doc-icon di-docx">DOCX</div>
+        <div class="doc-info">
+          <div class="doc-name">Call 2 Facilitator Guide</div>
+          <div class="doc-meta">Good Boss · GREET · Right Level · Routines · Full rubrics</div>
+          <div class="doc-actions">
+            <span class="da-btn da-primary" onclick="event.stopPropagation();downloadDoc('call2-guide')">Download</span>
+            <span class="da-btn da-sec">Facilitators only</span>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card" onclick="openDoc('call2-onepager')">
+        <div class="doc-icon di-html" style="background:#fef3c7;color:#92400e">HTML</div>
+        <div class="doc-info">
+          <div class="doc-name">Call 2 Candidate One-Pager</div>
+          <div class="doc-meta">Call 2 mindset shift · Evidence not intention · Prep guide</div>
+          <div class="doc-actions">
+            <span class="da-btn da-primary" onclick="event.stopPropagation();openDoc('call2-onepager')">Open</span>
+            <span class="da-btn da-sec" onclick="event.stopPropagation();printDoc('call2-onepager')">Print / PDF</span>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card" style="cursor:default;border-style:dashed;background:var(--bg)">
+        <div class="doc-icon" style="background:#f3f4f6;color:#9ca3af">+</div>
+        <div class="doc-info">
+          <div class="doc-name" style="color:#9ca3af">Additional resource</div>
+          <div class="doc-meta">Upload a supplemental file for Call 2 using the Upload section below</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALL 3 RESOURCES -->
+  <div class="section" id="call3">
+    <div class="section-title">Call 3 resources</div>
+    <div class="section-desc">The year-end readiness determination — business fluency, Q4 proof points, and predictable operations.</div>
+    <div class="doc-row">
+      <div class="doc-card" onclick="downloadDoc('call3-guide')">
+        <div class="doc-icon di-docx">DOCX</div>
+        <div class="doc-info">
+          <div class="doc-name">Call 3 Facilitator Guide</div>
+          <div class="doc-meta">Business acumen · Visit kick-off · Q4 staffing · Consistency · Final rubrics</div>
+          <div class="doc-actions">
+            <span class="da-btn da-primary" onclick="event.stopPropagation();downloadDoc('call3-guide')">Download</span>
+            <span class="da-btn da-sec">Facilitators only</span>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card" onclick="openDoc('call3-onepager')">
+        <div class="doc-icon di-html" style="background:#fef3c7;color:#92400e">HTML</div>
+        <div class="doc-info">
+          <div class="doc-name">Call 3 Candidate One-Pager</div>
+          <div class="doc-meta">Year-end stakes · Final readiness outcomes · Proof over plans</div>
+          <div class="doc-actions">
+            <span class="da-btn da-primary" onclick="event.stopPropagation();openDoc('call3-onepager')">Open</span>
+            <span class="da-btn da-sec" onclick="event.stopPropagation();printDoc('call3-onepager')">Print / PDF</span>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card" style="cursor:default;border-style:dashed;background:var(--bg)">
+        <div class="doc-icon" style="background:#f3f4f6;color:#9ca3af">+</div>
+        <div class="doc-info">
+          <div class="doc-name" style="color:#9ca3af">Additional resource</div>
+          <div class="doc-meta">Upload a supplemental file for Call 3 using the Upload section below</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASSESSMENT LOOP -->
+  <div class="section" id="assessment" style="padding-bottom:0;border-bottom:none">
+    <div class="section-title">Shared assessment loop</div>
+    <div class="section-desc">All facilitators submit scores, observations, and flags here. Every save is shared in real time — no duplicate entry, no lost observations.</div>
+    <div class="info-banner">
+      <span class="ib-icon">🔒</span>
+      <span>Enter your name and role before assessing. Every saved entry is stamped with your name and timestamp so Matt and Alyssa know who assessed each leader. Complete by EOD of the session.</span>
+    </div>
+  </div>
+
+  <!-- ASSESSMENT TOOL (inline, not iframed) -->
+  <div style="padding:0 40px 36px" id="assessment-tool-wrap">
+    <div class="assessment-wrap" id="at-root"></div>
+  </div>
+
+  <!-- UPLOAD -->
+  <div class="section" id="upload" style="border-bottom:none">
+    <div class="section-title">Upload documents</div>
+    <div class="section-desc">Add supplemental materials, group-specific notes, or updated resources. Uploaded files are stored in the browser and available to anyone on this device.</div>
+    <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()" ondragover="handleDrag(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+      <input type="file" id="file-input" multiple accept=".pdf,.docx,.doc,.html,.pptx,.xlsx" onchange="handleFiles(this.files)">
+      <div class="uz-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#9ca3af" stroke-width="1.5"><path d="M16 20V10M11 15l5-5 5 5"/><rect x="4" y="4" width="24" height="24" rx="3"/><path d="M4 22h24"/></svg>
+      </div>
+      <div class="uz-title">Drop files here or click to browse</div>
+      <div class="uz-sub">Accepts .docx, .pdf, .html, .pptx, .xlsx</div>
+    </div>
+    <div class="upload-list" id="upload-list"></div>
+  </div>
+
+</main>
+</div>
+
+<script>
+/* ── NAV ──────────────────────────────────────── */
+function setActive(el){
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+/* ── DOCUMENT ACTIONS ──────────────────────── */
+const BASE='https://alyssahutton.github.io/ETL-TALENT-HUB';
+const DOC_FILES={
+  'call1-guide':BASE+'/2026_Talent_Development_Class__1.docx',
+  'call2-guide':BASE+'/2026_Talent_Development_Class__2.docx',
+  'call3-guide':BASE+'/2026_Talent_Development_Class__3.docx',
+  'call1-onepager':BASE+'/ETL_Candidate_One_Pager_for_Call_1.html',
+  'call2-onepager':BASE+'/ETL_Candidate_One_Pager_for_Call_2.html',
+  'call3-onepager':BASE+'/ETL_Candidate_One_Pager_for_Call_3.html'
+};
+function downloadDoc(id){
+  const fn=DOC_FILES[id];if(!fn)return;
+  const a=document.createElement('a');
+  a.href=fn;a.target='_blank';a.download='';document.body.appendChild(a);a.click();document.body.removeChild(a);
+}
+function openDoc(id){
+  const fn=DOC_FILES[id];if(!fn)return;
+  window.open(fn,'_blank');
+}
+function printDoc(id){
+  const fn=DOC_FILES[id];if(!fn)return;
+  window.open(fn,'_blank');
+}
+
+/* ── UPLOAD ──────────────────────────────────── */
+let uploadedFiles=[];
+function handleDrag(e){e.preventDefault();document.getElementById('upload-zone').classList.add('drag');}
+function handleDragLeave(e){document.getElementById('upload-zone').classList.remove('drag');}
+function handleDrop(e){e.preventDefault();document.getElementById('upload-zone').classList.remove('drag');handleFiles(e.dataTransfer.files);}
+function handleFiles(files){
+  Array.from(files).forEach(f=>{uploadedFiles.push(f);});
+  renderUploadList();
+}
+function removeUpload(i){uploadedFiles.splice(i,1);renderUploadList();}
+function getExt(name){return name.split('.').pop().toUpperCase();}
+function extColor(ext){const m={DOCX:'#dbeafe|#1e40af',PDF:'#fee2e2|#991b1b',HTML:'#dcfce7|#166534',PPTX:'#fef3c7|#92400e',XLSX:'#d1fae5|#065f46'};const c=m[ext];if(!c)return'#f3f4f6|#6b7280';const[bg,cl]=c.split('|');return bg+'|'+cl;}
+function renderUploadList(){
+  const el=document.getElementById('upload-list');
+  if(!uploadedFiles.length){el.innerHTML='';return;}
+  el.innerHTML=uploadedFiles.map((f,i)=>{
+    const ext=getExt(f.name);const[bg,cl]=extColor(ext).split('|');
+    const size=f.size>1048576?(f.size/1048576).toFixed(1)+' MB':(f.size/1024).toFixed(0)+' KB';
+    return`<div class="upload-item">
+      <div class="ui-icon" style="background:${bg};color:${cl}">${ext}</div>
+      <div class="ui-name">${f.name}</div>
+      <div class="ui-size">${size}</div>
+      <button class="ui-remove" onclick="removeUpload(${i})">Remove</button>
+    </div>`;
+  }).join('');
+}
+
+/* ── ASSESSMENT TOOL ─────────────────────────── */
+const LEADERS=["Leader 1","Leader 2","Leader 3","Leader 4","Leader 5","Leader 6","Leader 7","Leader 8","Leader 9","Leader 10","Leader 11","Leader 12","Leader 13","Leader 14","Leader 15","Leader 16"];
+const ROOMS=[
+  {id:"r1",label:"Room 1",name:"Personal Leadership",topics:"Know Thyself  |  SD Job Profile",acls:"ar1",dotcls:"t-cdot-r1",bcls:"t-br1"},
+  {id:"r2",label:"Room 2",name:"Guest Experience",topics:"Commitment vs. Compliance  |  Staffing & Scheduling",acls:"ar2",dotcls:"t-cdot-r2",bcls:"t-br2"},
+  {id:"r3",label:"Room 3",name:"Operations",topics:"Elevating Efficiency  |  Dashboard  |  SD Lens",acls:"ar3",dotcls:"t-cdot-r3",bcls:"t-br3"},
+];
+const DIMS={
+  r1:[
+    {key:"selfAwareness",label:"Self-awareness",desc:"Proactively articulates impact, blind spots, and active mitigation strategies."},
+    {key:"accountability",label:"Personal accountability",desc:"Demonstrates consistent accountability; models ownership for team."},
+    {key:"valuesClarity",label:"Values clarity",desc:"Clear values-to-action connection; leads through tension authentically."},
+    {key:"roleAlignment",label:"SD role alignment",desc:"Actively closing gaps; real development plan aligned to the SD profile."},
+    {key:"mindsetShift",label:"Leadership mindset shift",desc:"Consistently demonstrates enterprise thinking across decisions and priorities."},
+  ],
+  r2:[
+    {key:"guestCulture",label:"Guest culture — commitment",desc:"Articulates and models a committed guest culture; team behaviors reflect it."},
+    {key:"modeling",label:"Modeling & visibility",desc:"Deliberately visible; guest behaviors modeled and traceable to leader."},
+    {key:"cultureSustain",label:"Service culture sustainability",desc:"Culture embedded in hiring, onboarding, and daily habits independent of presence."},
+    {key:"staffingStrategy",label:"Staffing strategy",desc:"Uses traffic trends, sales data, and talent planning to build optimal coverage."},
+    {key:"schedulingLeverage",label:"Scheduling as a leadership tool",desc:"Uses schedule as direct lever for guest experience, payroll, and team development."},
+  ],
+  r3:[
+    {key:"systemsThinking",label:"Operational systems thinking",desc:"Has built self-sustaining systems; coaches others to do the same."},
+    {key:"dashboardFluency",label:"Dashboard fluency",desc:"Synthesizes data into narrative; proactively adjusts plans based on trends."},
+    {key:"accountabilityCulture",label:"Accountability culture",desc:"Clear expectations, consistent follow-through, team-level accountability embedded."},
+    {key:"sdLens",label:"SD lens — enterprise view",desc:"Reads total store instinctively; acts beyond role boundaries; owns full store outcomes."},
+    {key:"communityStore",label:"Community & store culture",desc:"Culture is visible and intentional; community presence is evidenced and deliberate."},
+  ]
+};
+const SLABELS={1:"Emerging",2:"Emerging+",3:"Developing",4:"Ready",5:"SD-Ready"};
+const STORAGE_KEY="etl_call1_hub_v1";
+
+function emptyRoom(){return{strengths:"",devNeed:"",action30:"",notes:"",flag:"none",scores:{},savedAt:null,savedBy:""};}
+function emptyLeader(n){return{name:n,r1:emptyRoom(),r2:emptyRoom(),r3:emptyRoom()};}
+function initData(){const d={};LEADERS.forEach(n=>{d[n]=emptyLeader(n);});return d;}
+
+let T={
+  view:"form",leader:LEADERS[0],room:"r1",
+  facilitator:"",facilRole:"",facilSet:false,
+  syncStatus:"idle",saveStatus:"",saveTimer:null,
+  data:initData(),conflict:false,conflictRoom:null,loading:false
+};
+
+function roomAvg(ld,rid){
+  const vals=DIMS[rid].map(d=>ld[rid].scores[d.key]||0).filter(v=>v>0);
+  if(!vals.length)return null;
+  return(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1);
+}
+function isComplete(ld,rid){
+  return DIMS[rid].every(d=>(ld[rid].scores[d.key]||0)>0)&&(ld[rid].strengths||"").trim()&&(ld[rid].devNeed||"").trim();
+}
+function completedCount(){return LEADERS.filter(l=>ROOMS.some(r=>isComplete(T.data[l],r.id))).length;}
+function fullyDone(){return LEADERS.filter(l=>ROOMS.every(r=>isComplete(T.data[l],r.id))).length;}
+function scoreColor(v){if(!v)return"#6b7280";const n=parseFloat(v);if(n<=2)return"#dc2626";if(n<=3)return"#b45309";return"#16a34a";}
+function initials(name){const p=name.split(" ");return p.length>=2?p[0][0]+p[1][0]:name.slice(0,2).toUpperCase();}
+
+async function saveToServer(){
+  T.syncStatus="syncing";T.saveStatus="syncing";renderTool();
+  try{
+    const latest=await window.storage.get(STORAGE_KEY,true);
+    if(latest&&latest.value){
+      const srv=JSON.parse(latest.value);
+      const ld=T.leader,rid=T.room;
+      const srvR=srv[ld]?.[rid],myR=T.data[ld][rid];
+      if(srvR&&srvR.savedAt&&srvR.savedAt!==myR.savedAt&&srvR.savedBy&&srvR.savedBy!==T.facilitator){
+        T.conflict=true;T.conflictRoom={leader:ld,room:rid,their:srvR,mine:myR};
+        T.syncStatus="conflict";T.saveStatus="conflict";renderTool();return;
+      }
+      Object.keys(srv).forEach(k=>{if(k!==ld)T.data[k]=srv[k];});
+    }
+    T.data[T.leader][T.room].savedAt=Date.now();
+    T.data[T.leader][T.room].savedBy=T.facilitator||"Unknown";
+    await window.storage.set(STORAGE_KEY,JSON.stringify(T.data),true);
+    T.syncStatus="ok";T.saveStatus="ok";T.conflict=false;T.conflictRoom=null;
+    if(T.saveTimer)clearTimeout(T.saveTimer);
+    T.saveTimer=setTimeout(()=>{T.saveStatus="idle";renderTool();},3000);
+  }catch(e){T.syncStatus="err";T.saveStatus="err";}
+  renderTool();
+}
+
+async function loadFromServer(){
+  T.loading=true;renderTool();
+  try{
+    const r=await window.storage.get(STORAGE_KEY,true);
+    if(r&&r.value){T.data=JSON.parse(r.value);}
+  }catch(e){}
+  T.loading=false;renderTool();
+}
+
+async function pullLatest(){
+  T.syncStatus="syncing";renderTool();
+  try{
+    const r=await window.storage.get(STORAGE_KEY,true);
+    if(r&&r.value){T.data=JSON.parse(r.value);}
+    T.syncStatus="ok";
+  }catch(e){T.syncStatus="err";}
+  renderTool();
+}
+
+function resolveConflict(useTheirs){
+  if(!T.conflictRoom)return;
+  const{leader,room,their}=T.conflictRoom;
+  if(useTheirs)T.data[leader][room]=their;
+  T.conflict=false;T.conflictRoom=null;T.syncStatus="idle";T.saveStatus="idle";renderTool();
+}
+
+function tSetScore(key,val){
+  const cur=T.data[T.leader][T.room].scores[key]||0;
+  T.data[T.leader][T.room].scores[key]=cur===val?0:val;renderTool();
+}
+function tSetFlag(f){T.data[T.leader][T.room].flag=f;renderTool();}
+function tUpdateField(f,v){T.data[T.leader][T.room][f]=v;}
+function tSelectLeader(l){T.leader=l;renderTool();}
+function tSelectRoom(r){T.room=r;renderTool();}
+function tGoToLeader(l){T.leader=l;T.view="form";renderTool();}
+function tSetView(v){T.view=v;renderTool();}
+function tSetFacilitator(){
+  const n=document.getElementById("t-fname")?.value?.trim();
+  const ro=document.getElementById("t-frole")?.value;
+  if(!n)return;
+  T.facilitator=n;T.facilRole=ro||"";T.facilSet=true;
+  renderTool();loadFromServer();
+}
+
+function generateExport(){
+  let out=["TARGET TALENT DEVELOPMENT — CALL 1 ASSESSMENT SUMMARY","=".repeat(52),""];
+  LEADERS.forEach(l=>{
+    const ld=T.data[l];
+    out.push("LEADER: "+l,"—".repeat(38));
+    ROOMS.forEach(r=>{
+      const rd=ld[r.id],avg=roomAvg(ld,r.id);
+      out.push(r.label+" — "+r.name,"  Score: "+(avg||"Not assessed")+(rd.flag&&rd.flag!=="none"?"  |  Flag: "+rd.flag.toUpperCase():""));
+      DIMS[r.id].forEach(d=>{const s=rd.scores[d.key]||0;if(s)out.push("  "+d.label+": "+s+"/5 ("+SLABELS[s]+")")});
+      if(rd.strengths)out.push("  Strengths: "+rd.strengths);
+      if(rd.devNeed)out.push("  Dev need: "+rd.devNeed);
+      if(rd.action30)out.push("  30–60 day action: "+rd.action30);
+      if(rd.notes)out.push("  Notes: "+rd.notes);
+      if(rd.savedBy)out.push("  Assessed by: "+rd.savedBy+(rd.savedAt?" on "+new Date(rd.savedAt).toLocaleDateString():""));
+      out.push("");
+    });
+    out.push("");
+  });
+  return out.join("\n");
+}
+
+function copyExport(){
+  navigator.clipboard.writeText(generateExport()).catch(()=>{});
+  const b=document.querySelector(".t-copy-btn");
+  if(b){b.textContent="Copied!";setTimeout(()=>b.textContent="Copy to clipboard",2000);}
+}
+
+function syncBadgeHTML(){
+  const s=T.syncStatus;
+  const dotCls=s==="syncing"?" syncing":s==="err"?" err":"";
+  const txt=s==="syncing"?"Syncing...":s==="ok"?"All synced":s==="conflict"?"Conflict":s==="err"?"Sync error":"Live";
+  return`<span class="sync-badge"><span class="sync-dot${dotCls}"></span>${txt}</span>`;
+}
+
+function renderTool(){
+  const pct=Math.round((completedCount()/LEADERS.length)*100);
+  const ld=T.data[T.leader],rid=T.room,rd=ld[rid];
+  const room=ROOMS.find(r=>r.id===rid);
+
+  let idBar=T.facilSet
+    ?`<div class="t-id-bar">
+        <span class="t-id-lbl">Facilitating as:</span>
+        <strong style="font-size:13px">${T.facilitator}</strong>
+        ${T.facilRole?`<span style="font-size:12px;color:#6b7280">${T.facilRole}</span>`:""}
+        <button class="t-set-btn secondary" onclick="T.facilSet=false;renderTool()">Change</button>
+        <button class="t-set-btn secondary" onclick="pullLatest()">Pull latest</button>
+      </div>`
+    :`<div class="t-id-bar">
+        <span class="t-id-lbl">Your name:</span>
+        <input id="t-fname" type="text" placeholder="First name" onkeydown="if(event.key==='Enter')tSetFacilitator()">
+        <span class="t-id-lbl">Role:</span>
+        <select id="t-frole">
+          <option value="">Select role</option>
+          <option>Group Director</option><option>GVP</option><option>HRBP</option><option>DSD</option><option>Facilitator</option>
+        </select>
+        <button class="t-set-btn" onclick="tSetFacilitator()">Start assessing</button>
+      </div>`;
+
+  let body="";
+  if(T.loading){
+    body=`<div class="t-loading"><div class="t-spinner"></div><br>Loading shared assessments...</div>`;
+  } else if(T.view==="form"){
+    const lTabs=LEADERS.map(l=>{
+      const done=ROOMS.some(r=>isComplete(T.data[l],r.id));
+      return`<div class="t-ltab${l===T.leader?" act":""}" onclick="tSelectLeader('${l}')">${l.replace("Leader ","L")}${done?'<span class="cdot"></span>':""}</div>`;
+    }).join("");
+    const rTabs=ROOMS.map(r=>{
+      const comp=isComplete(ld,r.id);
+      return`<div class="t-rtab${r.id===rid?" "+r.acls:""}" onclick="tSelectRoom('${r.id}')">
+        <div class="t-rtab-lbl">${r.label}${comp?" ✓":""}</div>
+        <div class="t-rtab-name">${r.name}</div>
+        <div class="t-rtab-topics">${r.topics}</div>
+      </div>`;
+    }).join("");
+    const dimRows=DIMS[rid].map(d=>{
+      const v=rd.scores[d.key]||0;
+      const opts=[1,2,3,4,5].map(n=>`<div class="t-sopt${v===n?" ts"+n:""}" onclick="tSetScore('${d.key}',${n})"><div class="t-snum">${n}</div><div class="t-slbl">${SLABELS[n]}</div></div>`).join("");
+      return`<div class="t-dim-row"><div class="t-dim-lbl">${d.label}</div><div class="t-dim-desc">${d.desc}</div><div class="t-score-opts">${opts}</div></div>`;
+    }).join("");
+    const flagOpts=["none","accel","watch","concern"].map(f=>{
+      const labels={none:"No flag",accel:"Accelerate",watch:"Watch closely",concern:"Concern"};
+      const cls=rd.flag===f?" "+(f==="accel"?"t-fa":f==="watch"?"t-fw":f==="concern"?"t-fc":"t-fn"):"";
+      return`<div class="t-fopt${cls}" onclick="tSetFlag('${f}')">${labels[f]}</div>`;
+    }).join("");
+    const avg=roomAvg(ld,rid);
+    const ss=T.saveStatus;
+    const ssTxt=ss==="syncing"?"Saving to shared database...":ss==="ok"?"Saved — all facilitators can see this":ss==="conflict"?"Conflict — choose version above":ss==="err"?"Save failed":"Changes unsaved";
+    const ssCls=ss==="ok"?" ok":ss==="syncing"?" syncing":ss==="err"?" err":"";
+    const lastSaved=rd.savedBy?`Last saved by ${rd.savedBy}${rd.savedAt?" · "+new Date(rd.savedAt).toLocaleTimeString():""}`:""
+
+    const conflict=T.conflict&&T.conflictRoom?`<div class="t-conflict">
+      <span style="flex:1"><strong>Conflict:</strong> ${T.conflictRoom.their.savedBy||"Another facilitator"} saved a different version for ${T.leader} / ${room.name}. Choose which to keep.</span>
+      <button class="t-conflict-btn" style="background:#16a34a" onclick="resolveConflict(false)">Keep mine</button>
+      <button class="t-conflict-btn" onclick="resolveConflict(true)">Use theirs</button>
+    </div>`:"";
+
+    body=`${conflict}
+      <div class="t-leader-tabs">${lTabs}</div>
+      <div class="t-room-tabs">${rTabs}</div>
+      <div class="t-card">
+        <div class="t-card-head">
+          <div class="t-cdot ${room.dotcls}"></div>
+          <div>
+            <div class="t-card-title">${T.leader} — ${room.name}</div>
+            <div class="t-card-sub">${room.topics}${avg?` · Avg: <strong style="color:${scoreColor(avg)}">${avg}/5</strong>`:""} ${lastSaved?`· <em>${lastSaved}</em>`:""}</div>
+          </div>
+        </div>
+        ${dimRows}
+        <div class="t-divider"></div>
+        <div class="t-field-wrap">
+          <div class="t-field-lbl">Top two observed strengths <span class="t-ftag" style="background:#dcfce7;color:#166534">Strength</span></div>
+          <textarea class="t-ta" placeholder="Describe the two strongest signals from this conversation..." oninput="tUpdateField('strengths',this.value)">${rd.strengths||""}</textarea>
+        </div>
+        <div class="t-field-wrap">
+          <div class="t-field-lbl">Top developmental need <span class="t-ftag" style="background:#fef3c7;color:#92400e">Development</span></div>
+          <textarea class="t-ta" placeholder="The single most important area to grow before taking a store..." oninput="tUpdateField('devNeed',this.value)">${rd.devNeed||""}</textarea>
+        </div>
+        <div class="t-field-wrap">
+          <div class="t-field-lbl">Recommended 30–60 day action <span class="t-ftag" style="background:#dbeafe;color:#1e40af">Action</span></div>
+          <textarea class="t-ta" placeholder="Specific action, conversation, or experience in the next 30–60 days..." oninput="tUpdateField('action30',this.value)">${rd.action30||""}</textarea>
+        </div>
+        <div class="t-field-wrap">
+          <div class="t-field-lbl">Additional notes <span class="t-ftag" style="background:#f3f4f6;color:#6b7280">Optional</span></div>
+          <textarea class="t-ta" placeholder="Standout moments, patterns, things that didn't fit elsewhere..." oninput="tUpdateField('notes',this.value)">${rd.notes||""}</textarea>
+        </div>
+        <div class="t-field-wrap">
+          <div class="t-field-lbl" style="margin-bottom:6px">Readiness flag</div>
+          <div class="t-flag-opts">${flagOpts}</div>
+        </div>
+      </div>
+      <div class="t-save-bar">
+        <div class="t-ss${ssCls}">${ssTxt}</div>
+        <button class="t-save-btn" onclick="saveToServer()" ${!T.facilSet?"disabled":""}>Save &amp; sync</button>
+      </div>`;
+  } else if(T.view==="summary"){
+    const accel=LEADERS.filter(l=>ROOMS.some(r=>T.data[l][r.id].flag==="accel")).length;
+    const concern=LEADERS.filter(l=>ROOMS.some(r=>T.data[l][r.id].flag==="concern")).length;
+    const stats=`<div class="t-stats-grid">
+      <div class="t-stat"><div class="t-stat-v">${LEADERS.length}</div><div class="t-stat-l">Total leaders</div></div>
+      <div class="t-stat"><div class="t-stat-v" style="color:#CC0000">${completedCount()}</div><div class="t-stat-l">Partially assessed</div></div>
+      <div class="t-stat"><div class="t-stat-v" style="color:#16a34a">${fullyDone()}</div><div class="t-stat-l">Fully assessed</div></div>
+      <div class="t-stat"><div class="t-stat-v" style="color:#b45309">${accel}/${concern}</div><div class="t-stat-l">Accel / Concern</div></div>
+    </div>`;
+    const cards=LEADERS.map(l=>{
+      const ld=T.data[l];
+      const badges=ROOMS.map(r=>{const avg=roomAvg(ld,r.id);const c=avg?scoreColor(avg):"#9ca3af";return`<span class="t-sc-badge ${r.bcls}" style="${avg?`background:none;border:1px solid ${c};color:${c}`:""}">${r.label}: ${avg||"—"}</span>`;}).join("");
+      const flags=ROOMS.flatMap(r=>{const f=ld[r.id].flag;if(f&&f!=="none")return[`<span class="t-sc-flag ${f==="accel"?"t-fla":f==="watch"?"t-flw":"t-flc"}">${f} (${r.label})</span>`];return[];}).join(" ");
+      const done=ROOMS.some(r=>isComplete(ld,r.id));
+      return`<div class="t-scard" onclick="tGoToLeader('${l}')">
+        <div class="t-sc-top"><div class="t-sc-init">${initials(l)}</div><div class="t-sc-name">${l}</div></div>
+        <div class="t-sc-badges">${badges}</div>
+        ${flags?`<div>${flags}</div>`:""}
+        ${!done?'<div class="t-sc-empty">Not yet assessed</div>':""}
+      </div>`;
+    }).join("");
+    body=stats+`<div class="t-sum-grid">${cards}</div>`;
+  } else {
+    body=`<div style="margin-bottom:10px;font-size:13px;font-weight:600;color:var(--ink)">Full assessment export — Call 1</div>
+      <textarea class="t-exp-ta" readonly>${generateExport()}</textarea>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="t-copy-btn" onclick="copyExport()">Copy to clipboard</button>
+        <button class="t-copy-btn" onclick="pullLatest()">Refresh from server</button>
+      </div>`;
+  }
+
+  document.getElementById("at-root").innerHTML=`
+    <div class="tool-header">
+      <div>
+        <div class="th-title">Shared Assessment Loop — Call 1</div>
+        <div class="th-sub">Real-time sync · All facilitators · 16 leaders · 3 rooms</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        ${syncBadgeHTML()}
+        <button class="t-view-btn${T.view==="form"?" act":""}" onclick="tSetView('form')">Assessment</button>
+        <button class="t-view-btn${T.view==="summary"?" act":""}" onclick="tSetView('summary')">Summary</button>
+        <button class="t-view-btn${T.view==="export"?" act":""}" onclick="tSetView('export')">Export</button>
+      </div>
+    </div>
+    <div class="tool-inner">
+      ${idBar}
+      <div class="t-prog">
+        <div class="t-prog-txt">Progress: <strong>${completedCount()} of ${LEADERS.length}</strong> leaders have at least one room assessed</div>
+        <div class="t-prog-track"><div class="t-prog-fill" style="width:${pct}%"></div></div>
+        <div class="t-prog-pct">${pct}%</div>
+      </div>
+      ${body}
+    </div>`;
+}
+
+renderTool();
+</script>
+</body>
+</html>
